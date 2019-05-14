@@ -1,0 +1,403 @@
+
+.CalendarViewBorder{
+    position: relative;
+    padding:0 8px;
+    left: 0px;
+    margin-right: 20%;
+    right: 0px;
+    height: 100%;
+}
+
+.CalendarTitle{
+    position: relative;
+
+}
+
+.skipButton{
+    background-color: #fff;
+    margin: 20px 0 15px;
+    padding: 0 20px;
+    display: inline-block;
+}
+
+.rightButton{
+    border-radius: 0 4px 4px 0;
+}
+.leftButton{
+    border-radius: 4px 0 0 4px;
+}
+.skipButton button{
+    padding: 6px 12px;
+    line-height: 1.2;
+    background-color: #fff;
+    border: 1px solid #ccc;
+
+}
+.todayButton{
+    border-left: 0px!important;
+    border-right: 0px!important;
+}
+
+.DateYearMonth{
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    font-weight: 500;
+    line-height: 1.25;
+    font-size: 24px;
+    color: #000;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.weekdays div{
+    display: inline-block;
+    padding: 12px;
+    line-height: 1;
+    font-size: 12px;
+    color: #777;
+    width: calc(1/7*100%);
+    border-bottom: 2px solid #ccc;
+
+}
+
+.ScheduleBorder{
+  position: absolute;
+  padding: 10px 15px;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  white-space: nowrap;
+  box-shadow: 0 8px 12px 0 rgba(0,0,0,.12);
+  z-index: 101;
+  top: 0px;
+  left: 0px;
+}
+
+.ScheduleContent{
+  position: relative;
+  padding: 8px 8px 4px;
+}
+
+.ScheduleItem{
+  margin: 0 0 8px;
+  display: flex;
+  align-items: center;
+}
+
+.ScheduleItem span{
+  margin: 0 10px 0 0;
+  width: 36px;
+  line-height: 24px;
+  text-align: right;
+  color: #777;
+  font-size: 12px;
+  font-weight: lighter;
+}
+
+.NewScheduleName{
+  height: 30px;
+  overflow: hidden;
+  overflow-wrap: break-word;
+  resize: none;
+  margin: 5px 0;
+  width: 100%;
+  padding: 3px 0;
+  font-size: 16px;
+  line-height: 1.2;
+  border: none;
+  border-bottom: 1px dashed #ccc;
+  outline-color: transparent;
+}
+
+.calendarSelect,
+.repeatSelect,
+.remindSelect{
+  width: 197px;
+  font-size: 14px;
+}
+
+.selectAllDayType{
+  width: auto;
+  text-align: left;
+  color: #555;
+  cursor: pointer;
+  font-size: 12px;
+  line-height: 24px;
+  margin: 0 10px 0 0;
+  font-weight: lighter;
+}
+
+.selectAllDayType input{
+  margin-right: 5px;
+}
+
+.moreSelectBorder{
+  margin: 20px 0 0;
+  border-top: 1px solid #ccc;
+}
+
+.moreSelect{
+  margin-top: -12px;
+}
+
+.moreSelectContent{
+  display: inline-block;
+  padding: 0 5px 0 0;
+  font-size: 12px;
+  color: #555;
+  background: #fff;
+  font-weight: lighter;
+  cursor: pointer;
+}
+
+.moreSelect img{
+  width: 10px;
+  margin-right: 3px;
+  cursor: pointer;
+}
+
+.moreSelectRotate{
+  transform: rotate(90deg);
+}
+
+.startTime input,
+.endTime input{
+  box-sizing: border-box;
+  display: inline-block;
+  line-height: 24px;
+  width: 194px;
+  height: 24px;
+  font-size: 12px;
+  padding: 5px;
+  color: #555;
+  border: 1px solid #ccc;
+  background: #f6f6f6;
+  border-radius: 4px;
+}
+.showCreator{
+  margin: 0 3px 0 45px;
+}
+
+.showCreator + span{
+  width: auto;
+  color: #555;
+  line-height: 24px;
+  text-align: right;
+  font-size: 12px;
+  font-weight: lighter;
+  cursor: pointer;
+}
+
+.addressText{
+  padding: 5px;
+  width: 197px;
+  height: 24px;
+  font-size: 12px;
+  display: block;
+  line-height: 18px;
+  margin: 0;
+  border: 1px solid #ccc;
+  outline: 0;
+  border-radius: 5px;
+  box-shadow: none;
+  overflow: auto;
+}
+
+.ScheduleAdd{
+  float: left;
+  display: inline-block;
+  padding: 6px 10px;
+  margin: 0 10px 0 0;
+  color: #fff;
+  font-size: 14px;
+  background-color: #44acb6;
+  border: 1px solid #44acb6;
+  border-radius: 4px;
+  cursor: pointer;
+  background-clip: padding-box;
+}
+
+.ScheduleQuit{
+  border: 0;
+  margin: 0 0 0 10px;
+  display: block;
+  float: left;
+  line-height: 32px;
+  color: #555;
+  font-size: 12px;
+  vertical-align: baseline;
+  background: transparent;
+  cursor: pointer;
+}
+
+.ScheduleBtn{
+  margin: 15px 0 5px;
+}
+
+.ScheduleSmallBoardBorder{
+  position: absolute;
+  top: 200px;
+  z-index: 100;
+}
+
+.ScheduleSmallBoard{
+  box-shadow: 0 8px 12px 0 rgba(0,0,0,.12);
+  padding: 10px 15px;
+  background: #fff;
+  border: 1px solid #e3e3e3;
+  border-radius: 6px;
+  white-space: nowrap;
+}
+
+.ScheduleSmallBoardContent{
+  width: 280px;
+  padding: 8px 8px 4px;
+}
+
+.ScheduleInfo{
+  margin-bottom: 20px;
+}
+
+.ScheduleInfo img{
+  width: 48px;
+  height: 48px;
+  line-height: 48px;
+  font-size: 32px;
+  color: #ccc;
+  margin-right: 8px;
+  text-align: center;
+}
+
+.ScheduleNameAndDays{
+}
+
+.ScheduleName{
+  display: block;
+  font-size: 16px;
+  color: #000;
+  font-weight: 700;
+  white-space: normal;
+  word-break: break-all;
+  word-wrap: break-word;
+}
+
+.ScheduleDays{
+  color: #777;
+  font-size: 14px;
+}
+
+.ScheduleCalendarName{
+  display: flex;
+  margin-bottom: 12px;
+  font-size: 12px;
+  color: #777;
+  line-height: 24px;
+}
+
+.ScheduleOptions{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12px;
+  padding-top: 12px;
+  font-size: 12px;
+  border-top: 1px solid #e3e3e3;
+}
+
+.ScheduleDetail{
+  color: #44acb6;
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+  cursor: pointer;
+}
+
+.ScheduleEdit,
+.ScheduleDelete{
+  color: #777;
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+  display: inline-block;
+  outline-color: #44acb6;
+}
+
+.ScheduleDelete{
+  margin-left: 8px;
+}
+
+
+.deleteCalendarRemind{
+  width: 400px;
+  margin-left: -200px;
+  margin-top: -70.5px;
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  z-index: 100;
+  background-color: #fff;
+  border: 1px solid #e3e3e3;
+  border-radius: 4px;
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,.12);
+}
+
+.remindAbort{
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 20px;
+  line-height: 20px;
+  height: 20px;
+  font-weight: 900;
+}
+
+.remindAbort:before{
+  content: '\2716';
+}
+
+.remindArea{
+  padding: 20px;
+  position: relative;
+}
+
+.remindOptions{
+  padding-top: 20px;
+}
+
+.remindEnter,
+.remindQuit
+{
+  margin: 12px 0 4px;
+  font-size: 14px;
+  color: #777;
+  cursor: pointer;
+}
+
+.remindEnter{
+  display: inline-block;
+  padding: 6px 10px;
+  margin: 0 10px 0 0;
+  color: #fff;
+  font-size: 14px;
+  background-color: #44acb6;
+  border: 1px solid #44acb6;
+  border-radius: 4px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-clip: padding-box;
+}
+
+.remindEnter:hover,
+.remindQuit:hover{
+  opacity: 0.7;
+}
+

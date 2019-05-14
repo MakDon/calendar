@@ -1,0 +1,266 @@
+.CalendarBarviewBorder{
+    width: 20%;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    height: 100%;
+    background-color:rgba(239, 239, 239, 1)
+}
+
+.CalendarBarview{
+    padding: 20px;
+    height: 100%;
+}
+
+.CalendarBarTitle{
+    position: relative;
+}
+.CalendarBarTitle div{
+    display: inline;
+}
+.CalendarBarTitle div:nth-child(1){
+    font-weight: 500;
+    line-height: 1.25;
+    color: #000;
+    font-size: 18px;
+}
+.CalendarBarTitle div:nth-child(2){
+    margin-left: 8px;
+    font-size: 12px;
+    color: #777;
+    cursor: pointer;
+}
+.CalendarBarTitle div:nth-child(2):hover{
+    color: #44acb6;
+}
+#more{
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 24px;
+    line-height: 12px;
+}
+#more:hover{
+    color: #44acb6;
+}
+#more:before{
+    content: "\2026";
+}
+.CalendarBar{
+    height: calc(100% - 20px);
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.smallCalendarColorEdit{
+    position: absolute;
+    padding: 10px 15px;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-shadow: 0 0 3px rgba(0,0,0,.2);
+    white-space: nowrap;
+
+}
+
+.trangleImg{
+    position: absolute;
+    top: -10px;
+    right: 15px;
+}
+
+.trangleImg .trangleBorder{
+    width:0;
+    height:0;
+    border-width:0 10px 10px;
+    border-style:solid;
+    border-color:transparent transparent #ccc;/*透明 透明  灰*/
+    margin:0px auto;
+    position:relative;
+}
+
+.trangleImg .trangleContent{
+    width:0;
+    height:0;
+    border-width:0 9px 9px;
+    border-style:solid;
+    border-color:transparent transparent #fff;/*透明 透明  灰*/
+    margin:0px auto;
+    position:relative;
+    top:-9px;
+}
+
+.ColorEditTitle h3{
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.25;
+    margin-bottom: 8px;
+}
+.colorList{
+    margin-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    width: 220px;
+}
+
+.colorList div{
+    margin: 0 8px 0 0;
+    vertical-align: baseline;
+    background: transparent
+}
+
+.checkboxStyle{
+    display: none;
+}
+.checkboxStyle + label{
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border-radius: 2px;
+}
+
+.checkboxStyle:checked + label:after{
+    content: '\2714';
+    color: #fff;
+    position: absolute;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 14px;
+    width: 15px;
+    height: 15px;
+}
+
+.editOrDeleteCalendar span{
+    margin: 12px 0 4px;
+    font-size: 14px;
+    color: #777;
+    cursor: pointer;
+}
+
+.editOrDeleteCalendar span:nth-child(1){
+    color: #44acb6;
+    margin-right: 10px;
+}
+
+.editOrDeleteCalendar span:nth-child(1):hover{
+    opacity: 0.7;
+}
+
+.editOrDeleteCalendar span:nth-child(2){
+    color: #df3c2f;
+}
+
+.editOrDeleteCalendar span:nth-child(2):hover{
+    opacity: 0.7;
+}
+
+
+.deleteCalendarRemind{
+    width: 400px;
+    margin-left: -200px;
+    margin-top: -70.5px;
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    z-index: 100;
+    background-color: #fff;
+    border: 1px solid #e3e3e3;
+    border-radius: 4px;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,.12);
+}
+
+.remindAbort{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 20px;
+    line-height: 20px;
+    height: 20px;
+    font-weight: 900;
+}
+
+.remindAbort:before{
+    content: '\2716';
+}
+
+.remindContent{
+    height: 48px;
+}
+
+.remindArea{
+    padding: 20px;
+    position: relative;
+}
+
+.remindOptions{
+    padding-top: 20px;
+}
+
+.remindEnter,
+.remindQuit
+{
+    margin: 12px 0 4px;
+    font-size: 14px;
+    color: #777;
+    cursor: pointer;
+}
+
+.remindEnter{
+    display: inline-block;
+    padding: 6px 10px;
+    margin: 0 10px 0 0;
+    color: #fff;
+    font-size: 14px;
+    background-color: #44acb6;
+    border: 1px solid #44acb6;
+    border-radius: 4px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-clip: padding-box;
+}
+
+.remindEnter:hover{
+    opacity: 0.7;
+}
+
+.Color_1{background: #ed473a!important}
+.Color_2{background: #ff7442!important}
+.Color_3{background: orange!important}
+.Color_4{background: #eac600!important}
+.Color_5{background: #9acd32!important}
+.Color_6{background: #2fb536!important}
+.Color_7{background: #10936c!important}
+.Color_8{background: #54c8cb!important}
+.Color_9{background: #19beff!important}
+.Color_10{background: #1975ff!important}
+.Color_11{background: #2242e3!important}
+.Color_12{background: #8956ee!important}
+.Color_13{background: #b333cc!important}
+.Color_14{background: #e253ae!important}
+.Color_15{background: peru!important}
+.Color_16{background: #a41313!important}
+.Color_17{background: #a5adad!important}
+.Color_18{background: #6b7273!important}
+
+.backgroundColor_1{border: 1px solid #ed473a;background: #ed473a4d}
+.backgroundColor_2{border: 1px solid #ff7442;background: #ff74424d}
+.backgroundColor_3{border: 1px solid orange;background: #ffa5004d}
+.backgroundColor_4{border: 1px solid #eac600;background: #eac6004d}
+.backgroundColor_5{border: 1px solid #9acd32;background: #9acd324d}
+.backgroundColor_6{border: 1px solid #2fb536;background: #2fb5364d}
+.backgroundColor_7{border: 1px solid #10936c;background: #10936c4d}
+.backgroundColor_8{border: 1px solid #54c8cb;background: #54c8cb4d}
+.backgroundColor_9{border: 1px solid #19beff;background: #19beff4d}
+.backgroundColor_10{border: 1px solid #1975ff;background: #1975ff4d}
+.backgroundColor_11{border: 1px solid #2242e3;background: #2242e34d}
+.backgroundColor_12{border: 1px solid #8956ee;background: #8956ee4d}
+.backgroundColor_13{border: 1px solid #b333cc;background: #b333cc4d}
+.backgroundColor_14{border: 1px solid #e253ae;background: #e253ae4d}
+.backgroundColor_15{border: 1px solid peru;background: #cd853f4d}
+.backgroundColor_16{border: 1px solid #a41313;background: #a413134d}
+.backgroundColor_17{border: 1px solid #a5adad;background: #a5adad4d}
+.backgroundColor_18{border: 1px solid #6b7273;background: #6b72734d}

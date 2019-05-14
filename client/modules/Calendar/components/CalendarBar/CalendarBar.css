@@ -1,0 +1,109 @@
+.CalendarBarBorder{
+    position: relative;
+    display: flex;
+    align-items: center;
+    position: relative;
+    margin: 0 0 8px;
+}
+.checkboxStyle{
+    display: none;
+}
+.checkboxStyle + label{
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+}
+
+.checkboxStyle:checked + label:after{
+    content: '\2714';
+    color: #fff;
+    position: absolute;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 14px;
+    width: 14px;
+    height: 14px;
+}
+
+.CalendarBarName{
+    margin-left: 5px;
+    width: 80%;
+    height: 24px;
+    color: #777;
+    font-size: 12px;
+    line-height: 24px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.CalendarBarName:hover{
+    color: #44acb6;
+    cursor: pointer;
+}
+.setting{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 24px;
+    height: 24px;
+    color: #777;
+    font-size: 14px;
+    line-height: 24px;
+    text-align: center;
+}
+
+.setting img{
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.setting::before{
+    content: '';
+    display: block;
+    background-size: 100%; 
+    width: 20px;
+    height: 20px;
+}
+
+.Color_1{background: #ed473a!important}
+.Color_2{background: #ff7442!important}
+.Color_3{background: orange!important}
+.Color_4{background: #eac600!important}
+.Color_5{background: #9acd32!important}
+.Color_6{background: #2fb536!important}
+.Color_7{background: #10936c!important}
+.Color_8{background: #54c8cb!important}
+.Color_9{background: #19beff!important}
+.Color_10{background: #1975ff!important}
+.Color_11{background: #2242e3!important}
+.Color_12{background: #8956ee!important}
+.Color_13{background: #b333cc!important}
+.Color_14{background: #e253ae!important}
+.Color_15{background: peru!important}
+.Color_16{background: #a41313!important}
+.Color_17{background: #a5adad!important}
+.Color_18{background: #6b7273!important}
+
+.backgroundColor_1{border: 1px solid #ed473a;background: #ed473a4d}
+.backgroundColor_2{border: 1px solid #ff7442;background: #ff74424d}
+.backgroundColor_3{border: 1px solid orange;background: #ffa5004d}
+.backgroundColor_4{border: 1px solid #eac600;background: #eac6004d}
+.backgroundColor_5{border: 1px solid #9acd32;background: #9acd324d}
+.backgroundColor_6{border: 1px solid #2fb536;background: #2fb5364d}
+.backgroundColor_7{border: 1px solid #10936c;background: #10936c4d}
+.backgroundColor_8{border: 1px solid #54c8cb;background: #54c8cb4d}
+.backgroundColor_9{border: 1px solid #19beff;background: #19beff4d}
+.backgroundColor_10{border: 1px solid #1975ff;background: #1975ff4d}
+.backgroundColor_11{border: 1px solid #2242e3;background: #2242e34d}
+.backgroundColor_12{border: 1px solid #8956ee;background: #8956ee4d}
+.backgroundColor_13{border: 1px solid #b333cc;background: #b333cc4d}
+.backgroundColor_14{border: 1px solid #e253ae;background: #e253ae4d}
+.backgroundColor_15{border: 1px solid peru;background: #cd853f4d}
+.backgroundColor_16{border: 1px solid #a41313;background: #a413134d}
+.backgroundColor_17{border: 1px solid #a5adad;background: #a5adad4d}
+.backgroundColor_18{border: 1px solid #6b7273;background: #6b72734d}

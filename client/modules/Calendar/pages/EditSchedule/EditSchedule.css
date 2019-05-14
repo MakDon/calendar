@@ -1,0 +1,279 @@
+.modifyScheduleBarBorder{
+    position: relative;
+    width: 962px;
+    margin: 0 auto;
+}
+
+.modifyScheduleBarBackground{
+  top: -46px;
+  border: 1px solid #ddd;
+  background: #f9f9f9;
+  box-shadow: 0 2px 5px rgba(0,0,0,.05);
+  width: 100%;
+  min-height: 600px;
+  border-radius: 4px;
+  position: absolute;
+  left: 5px;
+}
+
+.modifyScheduleBarBackground div{
+  color: #777;
+  border-radius: 4px;
+  box-shadow: 0 8px 12px 0 rgba(0,0,0,.12);
+  display: block;
+  padding: 0 30px;
+  line-height: 46px;
+  font-size: 18px;
+  background: #f9f9f9;
+  cursor: pointer;
+}
+
+.modifyScheduleBarBackground div:hover{
+  background-color: #fff;
+}
+
+.modifyScheduleBarContent{
+    margin-top: 46px;
+    border-radius: 4px;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,.12);
+    width: 101%;
+    min-height: 600px;
+    border: 1px solid #dbdfd6;
+    background: #fff;
+    position: relative;
+    transform-origin: 50% 0 0;
+    -webkit-transform-origin: 50% 0 0;
+}
+
+.modifyScheduleTitle{
+    line-height: 1.5;
+    display: block;
+    padding: 0 40px 40px;
+    min-height: 600px;
+    box-sizing: border-box;
+}
+
+.modifyScheduleTitle h3{
+    margin: 40px 0;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 1.25;
+}
+
+.ScheduleBorder{
+
+}
+
+.ScheduleContent{
+
+}
+
+.ScheduleItem{
+  margin: 0 0 8px;
+  display: flex;
+  align-items: center;
+}
+
+.ScheduleItem span{
+  margin: 0 10px 0 0;
+  width: 36px;
+  line-height: 24px;
+  text-align: right;
+  color: #777;
+  font-size: 12px;
+  font-weight: lighter;
+}
+
+.ScheduleItem h4{
+  font-size: 14px;
+  margin-top: 20px;
+  font-weight: 500;
+  line-height: 1.25;
+}
+
+.modifyScheduleName{
+  height: 30px;
+  overflow: hidden;
+  overflow-wrap: break-word;
+  resize: none;
+  margin: 5px 0;
+  width: 550px;
+  padding: 3px 0;
+  font-size: 16px;
+  line-height: 1.2;
+  border: none;
+  border-bottom: 1px dashed #ccc;
+  outline-color: transparent;
+}
+
+.calendarSelect,
+.repeatSelect,
+.remindSelect{
+  width: 197px;
+  font-size: 14px;
+}
+
+.selectAllDayType{
+  width: auto;
+  text-align: left;
+  color: #555;
+  cursor: pointer;
+  font-size: 12px;
+  line-height: 24px;
+  margin: 0 10px 0 0;
+  font-weight: lighter;
+}
+
+.selectAllDayType input{
+  margin-right: 5px;
+}
+
+.startTime input,
+.endTime input{
+  box-sizing: border-box;
+  display: inline-block;
+  line-height: 24px;
+  width: 194px;
+  height: 24px;
+  font-size: 12px;
+  padding: 5px;
+  color: #555;
+  border: 1px solid #ccc;
+  background: #f6f6f6;
+  border-radius: 4px;
+}
+.showCreator{
+  margin: 0 3px 0 12px;
+}
+
+#showCreator{
+  margin-top: 10px;
+}
+.showCreator + span{
+  width: auto;
+  color: #555;
+  line-height: 24px;
+  text-align: right;
+  font-size: 12px;
+  font-weight: lighter;
+  cursor: pointer;
+}
+
+.addressText{
+  padding: 5px;
+  width: 197px;
+  height: 24px;
+  font-size: 12px;
+  display: block;
+  line-height: 18px;
+  margin: 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: none;
+  overflow: auto;
+}
+
+.ScheduleBtn{
+  margin: 15px 0 5px;
+}
+
+.addMember{
+
+}
+
+.MemberList{
+  margin-top: 15px;
+  display: flex;
+}
+
+.selectAllPeople{
+  margin: 0 0 10px;
+}
+
+.selectAllPeople span{
+  display: block;
+  cursor: pointer;
+  width: 52px;
+  padding: 0 8px;
+  margin: 5px 6px 5px 0;
+  color: #777;
+  font-size: 12px;
+  line-height: 20px;
+  border-radius: 10px;
+  background: #efefef;
+}
+
+.selectAllPeople span:active{
+  color: #fff;
+  background-color: #44acb6
+}
+
+.clickAddMember{
+  margin: 0px 15px 10px 0;
+  display: inline-block;
+}
+
+.clickAddMember select{
+  width: 155px;
+  height: 30px;
+  border-radius: 5px;
+  display: inline-block;
+}
+
+.calendarMember{
+  margin: 0px 5px 0px;
+}
+
+.calendarMember input{
+  margin-right: 3px;
+}
+
+.calendarMember span{
+  color: #000;
+  font-size:  16px;
+  line-height: 24px;
+  font-weight: 500;
+}
+
+.memberSelectBorder{
+  min-height: 100px;
+  border-bottom: 1px solid #e3e3e3;
+}
+
+.modifyScheduleSave{
+    display: inline-block;
+    padding: 6px 10px;
+    margin: 0 10px 0 0;
+    color: #fff;
+    background-color: #44acb6;
+    border: 1px solid #44acb6;
+    border-radius: 4px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    outline-color: #44acb6;
+    background-clip: padding-box;
+    font: 400 14px Arial;
+}
+
+.modifyScheduleQuit{
+    color: #777;
+    font-size: 14px;
+    background-color: transparent;
+    border-color: transparent;
+    vertical-align: top;
+    display: inline-block;
+    padding: 6px 10px;
+    margin: 0 10px 0 0;
+    border-radius: 4px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    outline-color: #44acb6;
+    background-clip: padding-box;
+}
+

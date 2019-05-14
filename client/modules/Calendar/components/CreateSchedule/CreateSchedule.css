@@ -1,0 +1,18 @@
+.SchedulePlaceholder{
+  color: #ed473a;
+  height: 22px;
+  margin: 0 2px;
+  border-radius: 12px;
+}
+.SchedulePlaceholder p{
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 12px;
+  line-height: 18px;
+  padding: 0 4px 0 6px;
+  margin: 0;
+  word-wrap: break-word;
+  cursor: pointer;
+  font-weight: lighter;
+}

@@ -1,0 +1,13 @@
+.CalendarBorder{
+    min-width: 1150px;
+    max-width: 1650px;
+    min-height: 773px;
+    position: relative;
+    left: 0px;
+    margin: 0 auto;
+    background-color:#fff;
+    border-radius: 2px;
+    webkit-box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(228, 228, 228, 1);
+}

@@ -1,0 +1,193 @@
+.addCalendarBarBorder{
+    position: relative;
+    width: 962px;
+    margin: 0 auto;
+}
+
+.addCalendarBarBackground{
+    top: -46px;
+    border: 1px solid #ddd;
+    background: #f9f9f9;
+    box-shadow: 0 2px 5px rgba(0,0,0,.05);
+    width: 100%;
+    min-height: 600px;
+    border-radius: 4px;
+    position: absolute;
+    left: 5px;
+}
+
+.addCalendarBarBackground div{
+    color: #777;
+    border-radius: 4px;
+    box-shadow: 0 8px 12px 0 rgba(0,0,0,.12);
+    display: block;
+    padding: 0 30px;
+    line-height: 46px;
+    font-size: 18px;
+    background: #f9f9f9;
+    cursor: pointer;
+}
+
+.addCalendarBarBackground div:hover{
+  background-color: #fff;
+}
+
+.addCalendarBarContent{
+    margin-top: 46px;
+    border-radius: 4px;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,.12);
+    width: 101%;
+    min-height: 600px;
+    border: 1px solid #dbdfd6;
+    background: #fff;
+    position: relative;
+    transform-origin: 50% 0 0;
+    -webkit-transform-origin: 50% 0 0;
+}
+
+.newCalendarTitle{
+    line-height: 1.5;
+    display: block;
+    padding: 0 40px 40px;
+    min-height: 600px;
+    box-sizing: border-box;
+}
+
+.newCalendarTitle{
+    margin: 40px 0;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 1.25;
+}
+
+.calendarName{
+    margin-bottom: 20px;
+}
+
+.calendarName input{
+    display: block;
+    width: 220px;
+    height: 32px;
+    line-height: 18px;
+    margin: 0;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    outline: 0;
+    border-radius: 5px;
+    box-shadow: none;
+    overflow: auto;
+    font: 400 14px Arial;
+}
+
+.errorCalendarName{
+    margin: 5px 0 0 2px;
+    font-size: 12px;
+    color: #df3c2f;
+}
+.colorList{
+    margin-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.colorList div{
+    margin: 0 8px 0 0;
+    vertical-align: baseline;
+    background: transparent
+}
+
+.checkboxStyle{
+    display: none;
+}
+.checkboxStyle + label{
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    border-radius: 4px;
+}
+
+.checkboxStyle:checked + label:after{
+    content: '\2714';
+    color: #fff;
+    position: absolute;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 24px;
+    width: 24px;
+    height: 24px;
+}
+
+.newCalendarSave{
+    display: inline-block;
+    padding: 6px 10px;
+    margin: 0 10px 0 0;
+    color: #fff;
+    background-color: #44acb6;
+    border: 1px solid #44acb6;
+    border-radius: 4px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    outline-color: #44acb6;
+    background-clip: padding-box;
+    font: 400 14px Arial;
+}
+
+.newCalendarQuit{
+    color: #777;
+    font-size: 14px;
+    background-color: transparent;
+    border-color: transparent;
+    vertical-align: top;
+    display: inline-block;
+    padding: 6px 10px;
+    margin: 0 10px 0 0;
+    border-radius: 4px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    outline-color: #44acb6;
+    background-clip: padding-box;
+}
+
+.Color_1{background: #ed473a!important}
+.Color_2{background: #ff7442!important}
+.Color_3{background: orange!important}
+.Color_4{background: #eac600!important}
+.Color_5{background: #9acd32!important}
+.Color_6{background: #2fb536!important}
+.Color_7{background: #10936c!important}
+.Color_8{background: #54c8cb!important}
+.Color_9{background: #19beff!important}
+.Color_10{background: #1975ff!important}
+.Color_11{background: #2242e3!important}
+.Color_12{background: #8956ee!important}
+.Color_13{background: #b333cc!important}
+.Color_14{background: #e253ae!important}
+.Color_15{background: peru!important}
+.Color_16{background: #a41313!important}
+.Color_17{background: #a5adad!important}
+.Color_18{background: #6b7273!important}
+
+.backgroundColor_1{border: 1px solid #ed473a;background: #ed473a4d}
+.backgroundColor_2{border: 1px solid #ff7442;background: #ff74424d}
+.backgroundColor_3{border: 1px solid orange;background: #ffa5004d}
+.backgroundColor_4{border: 1px solid #eac600;background: #eac6004d}
+.backgroundColor_5{border: 1px solid #9acd32;background: #9acd324d}
+.backgroundColor_6{border: 1px solid #2fb536;background: #2fb5364d}
+.backgroundColor_7{border: 1px solid #10936c;background: #10936c4d}
+.backgroundColor_8{border: 1px solid #54c8cb;background: #54c8cb4d}
+.backgroundColor_9{border: 1px solid #19beff;background: #19beff4d}
+.backgroundColor_10{border: 1px solid #1975ff;background: #1975ff4d}
+.backgroundColor_11{border: 1px solid #2242e3;background: #2242e34d}
+.backgroundColor_12{border: 1px solid #8956ee;background: #8956ee4d}
+.backgroundColor_13{border: 1px solid #b333cc;background: #b333cc4d}
+.backgroundColor_14{border: 1px solid #e253ae;background: #e253ae4d}
+.backgroundColor_15{border: 1px solid peru;background: #cd853f4d}
+.backgroundColor_16{border: 1px solid #a41313;background: #a413134d}
+.backgroundColor_17{border: 1px solid #a5adad;background: #a5adad4d}
+.backgroundColor_18{border: 1px solid #6b7273;background: #6b72734d}

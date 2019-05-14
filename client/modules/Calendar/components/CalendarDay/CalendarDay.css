@@ -1,0 +1,110 @@
+.WeekStyle {
+  border-bottom: 1px solid #e3e3e3;
+  position: relative;
+}
+.Day{
+  display: inline-block;
+  width: calc(1/7*100%);
+  min-height: 110px;
+  padding: 0 0 20px;
+}
+.Day .Dayinfo{
+  height: 48px;
+  padding: 12px 8px;
+}
+
+.Day:nth-child(6){
+  color: #ffa02b;
+}
+.Day:nth-child(7){
+  color: #ffa02b;
+}
+.otherMonth{
+  color: #ccc;
+}
+.Days{
+  color: #000;
+  font: normal 700 24px/1 Calibri;
+  display: flex;
+}
+
+.weekScheduleList{
+  position: absolute;
+  top: 48px;
+  width: 100%;
+}
+
+.weekScheduleItem{
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: calc(1/7*100%);
+}
+
+
+
+.dayScheduleBorder{
+  color: #ed473a;
+  margin: 4px 0px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.dayScheduleContent{
+  height: 24px;
+  margin: 0 2px;
+  border-radius: 14px;
+}
+
+.dayScheduleName{
+  color: #555;
+  font-size: 12px;
+  line-height: 24px;
+  margin: 0;
+  padding: 0 8px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.creatorImg{
+  margin: 4px 0 0 -4px;
+  display: inline-block;
+  height: 16px;
+  vertical-align: top;
+}
+
+.creatorImg img{
+  display: inline-block;
+  margin-right: 4px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+}
+
+.daySchedulePosition{
+  height: 24px;
+  margin: 4px 0px ;
+}
+
+.backgroundColor_1{background: #ed473a4d}
+.backgroundColor_2{background: #ff74424d}
+.backgroundColor_3{ background: #ffa5004d}
+.backgroundColor_4{ background: #eac6004d}
+.backgroundColor_5{ background: #9acd324d}
+.backgroundColor_6{ background: #2fb5364d}
+.backgroundColor_7{ background: #10936c4d}
+.backgroundColor_8{ background: #54c8cb4d}
+.backgroundColor_9{ background: #19beff4d}
+.backgroundColor_10{ background: #1975ff4d}
+.backgroundColor_11{ background: #2242e34d}
+.backgroundColor_12{ background: #8956ee4d}
+.backgroundColor_13{ background: #b333cc4d}
+.backgroundColor_14{ background: #e253ae4d}
+.backgroundColor_15{ background: #cd853f4d}
+.backgroundColor_16{ background: #a413134d}
+.backgroundColor_17{ background: #a5adad4d}
+.backgroundColor_18{ background: #6b72734d}

@@ -59,3 +59,22 @@ typings/
 
 # next.js build output
 .next
+
+# for macos
+.DS_Store
+
+# for JB
+.idea/
+
+# from MERN.io
+dump.rdb
+.vscode/
+public/*
+dist
+coverage/
+.nyc_output/
+yarn.lock
+package-lock.json
+
+# for the parent system thw author use:
+IHCI.adaptor.js

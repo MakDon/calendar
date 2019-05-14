@@ -1,0 +1,424 @@
+.detailScheduleBorder{
+    position: relative;
+    width: 962px;
+    margin: 0 auto;
+}
+
+.detailScheduleBackground{
+  top: -46px;
+  border: 1px solid #ddd;
+  background: #f9f9f9;
+  box-shadow: 0 2px 5px rgba(0,0,0,.05);
+  width: 100%;
+  min-height: 600px;
+  border-radius: 4px;
+  position: absolute;
+  left: 5px;
+}
+
+.detailScheduleBackground div{
+  color: #777;
+  border-radius: 4px;
+  box-shadow: 0 8px 12px 0 rgba(0,0,0,.12);
+  display: block;
+  padding: 0 30px;
+  line-height: 46px;
+  font-size: 18px;
+  background: #f9f9f9;
+  cursor: pointer;
+}
+
+.detailScheduleBackground div:hover{
+  background-color: #fff;
+}
+
+.detailScheduleContentBorder{
+  margin-top: 46px;
+  border-radius: 4px;
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,.12);
+  width: 101%;
+  min-height: 600px;
+  border: 1px solid #dbdfd6;
+  background: #fff;
+  position: relative;
+  transform-origin: 50% 0 0;
+  -webkit-transform-origin: 50% 0 0;
+}
+
+.detailScheduleContent{
+  display: block;
+  padding: 0 40px 40px;
+  min-height: 600px;
+  box-sizing: border-box;
+}
+
+.detailScheduleModify{
+  position: absolute;
+  right: 0;
+  top: 40px;
+}
+
+.detailScheduleModify div{
+  width: 100px;
+  padding: 5px 10px;
+  margin-right: 1px;
+  border-bottom: 1px solid #e3e3e3;
+  vertical-align: baseline;
+  background: transparent;
+  outline-color: #44acb6;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.detailScheduleEdit{
+  color: #44acb6;
+}
+
+.detailScheduleDelete{
+ color: #df3c2f;
+}
+
+.detailScheduleEditOrDelete div:hover{
+  opacity: 0.7;
+}
+
+.detailScheduleTop{
+  border-bottom: 1px solid #ccc;
+  padding: 0 0 20px;
+  margin: 20px 0 30px;
+  width: 700px;
+}
+
+.detailScheduleTitle{
+  font-size: 12px;
+  color: #aaa;
+  margin: 0 0 20px;
+}
+
+.detailScheduleTitle span{
+  color: #ed473a;
+  cursor: pointer;
+}
+
+.scheduleNameAndTime{
+  position: relative;
+  margin-bottom: 36px;
+}
+
+.scheduleEvents{
+  text-align: center;
+  line-height: 38px;
+}
+
+.scheduleName{
+  position: absolute;
+  top: -8px;
+  padding: 0 0 0 48px;
+  font-size: 18px;
+  color: #333;
+}
+
+.scheduleTime{
+  position: absolute;
+  top: 18px;
+  padding: 0 0 0 48px;
+  font-size: 14px;
+  color: #777;
+}
+
+.deleteCalendarRemind,
+.editInformMember,
+.deleteCommentRemind{
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  z-index: 100;
+  background-color: #fff;
+  border: 1px solid #e3e3e3;
+  border-radius: 4px;
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,.12);
+}
+
+.deleteCalendarRemind,
+.deleteCommentRemind{
+  width: 400px;
+  margin-left: -200px;
+  margin-top: -70.5px;
+}
+
+.editInformMember{
+  width: 600px;
+  margin-left: -300px;
+  margin-top: -100px;
+}
+
+.remindAbort,
+.editInformMemberAbort{
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 20px;
+  line-height: 20px;
+  height: 20px;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.remindAbort:before,
+.editInformMemberAbort:before{
+  content: '\2716';
+}
+
+.remindArea,
+.editInformArea{
+  padding: 20px;
+  position: relative;
+}
+
+.editInformTitle{
+  font-size: 1.5em;
+  margin: 0 0 .5em;
+  font-weight: 500;
+  line-height: 1.25;
+}
+
+.selectAllPeople{
+  margin: 5px 0px 10px;
+  font-size: 12px;
+  color: #555;
+  line-height: 22px;
+}
+
+.selectPeople{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.selectAllPeople span{
+  padding: 2px 8px;
+  color: #777;
+  line-height: 16px;
+  background: #efefef;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.calendarMember input{
+  margin: 0px 5px 0px;
+}
+
+.remindOptions,
+.editInformOptions{
+  padding-top: 20px;
+}
+
+.remindEnter,
+.remindQuit,
+.editInformEnter,
+.editInformQuit
+{
+  margin: 12px 0 4px;
+  font-size: 14px;
+  color: #777;
+  cursor: pointer;
+}
+
+.remindEnter,
+.editInformEnter{
+  display: inline-block;
+  padding: 6px 10px;
+  margin: 0 10px 0 0;
+  color: #fff;
+  font-size: 14px;
+  background-color: #44acb6;
+  border: 1px solid #44acb6;
+  border-radius: 4px;
+  cursor: pointer;
+  background-clip: padding-box;
+}
+
+.remindEnter:hover,
+.editInformEnter:hover,
+.remindQuit:hover,
+.editInformQuit:hover{
+  opacity: 0.7;
+}
+
+.commentsArea{
+  width: 700px;
+}
+
+.commentArea{
+  position: relative;
+  margin-bottom: 30px;
+}
+
+.commentListOptions{
+  position: relative;
+  float: right;
+  height: 25px;
+  cursor: default;
+  text-align: center;
+}
+
+.commentListOptions img{
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+  line-height: 20px;
+  font-size: 14px;
+  color: #777;
+  margin: 0px 2px;
+  visibility: hidden;
+  cursor: pointer;
+}
+
+.commentList{
+  /*margin-left: 65px;*/
+}
+
+.commentName{
+  font-size: 14px;
+  font-weight: 700;
+  color: #000;
+  margin-right: 10px;
+}
+
+.commentTime{
+  font-size: 12px;
+  color: #777;
+}
+
+.commentListContent{
+  white-space: normal;
+  word-wrap: break-word;
+  margin-top: 8px;
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+.commentListContent p{
+  color: #333;
+  word-wrap: break-word;
+  margin: 0 0 1em;
+}
+
+.commentAddArea{
+  margin-bottom: 60px;
+}
+
+.commentInput{
+  min-height: 1em;
+  padding: 10px 15px;
+  border: 1px solid #ccc;
+  color: #777;
+  font-size: 14px;
+  cursor: text;
+  border-radius: 4px;
+  width: 650px;
+}
+
+.commentText{
+  border-radius: 5px;
+  border: 1px solid #e3e3e3;
+  width: 650px;
+  resize: none;
+  overflow: hidden;
+  word-wrap: break-word;
+  padding: 10px 12px 60px;
+  height: 85px;
+}
+
+.commentContent{
+  position: relative;
+  margin-bottom: 0;
+  width: 700px;
+  margin-top: 30px;
+}
+
+.commentAddOptions{
+  margin: 20px 0;
+}
+
+.commentAddOptions button{
+  display: inline-block;
+  padding: 6px 10px;
+  margin: 0 10px 0 0;
+  font-size: 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  outline-color: #44acb6;
+  background-clip: padding-box;
+  border: 0;
+}
+
+.submitComment{
+  background-color: #44acb6;
+  color: #fff;
+}
+
+.quitComment{
+  color: #777;
+  font-size: 14px;
+  background-color: transparent;
+  vertical-align: top;
+}
+
+.commentInform{
+  margin: 0 -40px -40px;
+  height: 90px;
+}
+
+.commentInformContainer{
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 40px;
+  border-top: 1px solid #e3e3e3;
+  background-color: #f6f6f6;
+  border-radius: 0 0 4px 4px;
+}
+
+.commentInformPerson{
+  max-width: 500px;
+
+}
+
+.getInformPersonTips{
+
+  margin-bottom: 5px;
+  color: #555;
+  font-size: 14px;
+  line-height: 24px;
+}
+
+.getInformPeople div{
+  display: inline-block;
+  height: 24px;
+  vertical-align: middle;
+  margin: 0px 3px;
+}
+
+.commentInformOptions button{
+  display: inline-block;
+  padding: 6px 12px;
+  color: #000;
+  line-height: 1.2;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  margin: 0 10px 0 0;
+}
+
+
+

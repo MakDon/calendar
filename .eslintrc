@@ -1,0 +1,30 @@
+{
+  "extends": [
+    "airbnb",
+    "plugin:ava/recommended"
+  ],
+  "parser": "babel-eslint",
+  "plugins": [
+    "ava","react","jsx-a11y","import"
+  ],
+  "env": {
+    "browser": true,
+    "node": true,
+    "mocha": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+        "jsx": true
+    }
+  },
+  "rules": {
+     "comma-dangle": [1, "always-multiline"],
+     "no-underscore-dangle" : 0,
+     "max-len": [1, 180, 4],
+     "arrow-body-style": [0],
+     "global-require":0,
+     "import/no-unresolved": [0]
+  }
+}
