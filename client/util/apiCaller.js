@@ -30,6 +30,5 @@ export function requestApi(requestUrl, formData, callback) {
     .then(response => response.json())
     .then(json => {
       callback(json);
-    })
-    .catch(e => console.log('error', e));
+    });
 }

@@ -4,7 +4,6 @@ import CalendarView from './pages/CalendarView/CalendarView';
 import CalendarBarView from './pages/CalendarBarView/CalendarBarView';
 import configUrl from '../../../config/config';
 import { requestApi } from '../../util/apiCaller';
-import messages from '../../../config/glossary';
 
 export class Calendar extends Component {
   constructor(props) {
@@ -29,17 +28,15 @@ export class Calendar extends Component {
       this.requestLoginCalendar(ticket, teamId);
     } else {
       window.addEventListener('message', (e) => {
-        // console.log(e.data);
         const height = document.body.scrollHeight;
         top.postMessage(height, configUrl.iframeParent);
-        if (!e.data) {
-          console.log(messages.invalidValue);
-        }
+        // if (!e.data) {
+          // TODO: 修改alert为弹出框
+          // alert(messages.loginFailed);
+        // }
         ticket = e.data.ticket;
         teamId = e.data.teamId;
-        if (ticket === '' || teamId === '') {
-          console.log(messages.invalidValue);
-        } else {
+        if (ticket && teamId) {
           this.requestLoginCalendar(ticket, teamId);
         }
       }, false);
@@ -99,7 +96,6 @@ export class Calendar extends Component {
         teammatesFormat = `${teammatesFormat + JSON.stringify(teammates[i])}-`;
       }
       localStorage.setItem('teammates', teammatesFormat);
-      // console.log(teamMember);
     }
   }
   render() {

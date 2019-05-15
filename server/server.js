@@ -38,11 +38,11 @@ if (isDevMode || isTestMode) {
 }
 
 // React And Redux Setup
-import { configureStore } from '../client/store';
-import { Provider } from 'react-redux';
-import React from 'react';
-import { renderToString } from 'react-dom/server';
-import { match, RouterContext } from 'react-router';
+// import { configureStore } from '../client/store';
+// import { Provider } from 'react-redux';
+// import React from 'react';
+// import { renderToString } from 'react-dom/server';
+import { match } from 'react-router';
 import Helmet from 'react-helmet';
 
 // Import required modules
@@ -189,8 +189,6 @@ app.use((req, res, next) => {
       */
   });
 });
-
-
 
 // start app
 app.listen(serverConfig.port, (error) => {

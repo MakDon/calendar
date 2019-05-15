@@ -126,6 +126,7 @@ export class CalendarView extends Component {
     if (rowKey === 0 && this.state.startDay !== 1) {
       tmpDate = tmpDate - this.state.startDay + 2;
     }
+    // eslint-disable-next-line quote-props
     const formatTime = moment().set({ 'year': this.state.nowYear, 'month': this.state.nowMonth, 'date': tmpDate }).format('YYYY-MM-DD');
     document.getElementById('createScheduleBoard').style.top = `${top}px`;
     document.getElementById('createScheduleBoard').style.left = `${left}px`;
@@ -449,6 +450,7 @@ export class CalendarView extends Component {
     // const color = document.getElementById('endTime').value;
     // time format is incorrect, so we need return false to interrupt this option
     if (moment(endTime).diff(moment(startTime), 'days') < 0) {
+      // eslint-disable-next-line no-alert
       alert(messages.timeError);
       return false;
     }
@@ -497,10 +499,6 @@ export class CalendarView extends Component {
       body: JSON.stringify({}),
     };
     requestApi(requestUrl, data, this.setScheduleSave);
-  }
-
-  printResult(result) {
-    console.log(result);
   }
 
   scheduleQuit() {
@@ -581,7 +579,8 @@ export class CalendarView extends Component {
 
   returnStartEndTime(startTime, endTime) {
     if (moment(startTime).diff(moment(endTime)) !== 0) {
-      return `${moment(startTime).month() + messages.month + moment(startTime).date() + messages.day}-${moment(endTime).month() + messages.month + moment(endTime).date() + messages.day}`;
+      return `${moment(startTime).month() + messages.month + moment(startTime).date() + messages.day}-
+      ${moment(endTime).month() + messages.month + moment(endTime).date() + messages.day}`;
     }
     return `${moment(startTime).month() + messages.month + moment(startTime).date() + messages.day}`;
   }

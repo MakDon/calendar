@@ -49,5 +49,6 @@ const messages = {
   enterDeleteReply: '确定要删除这条回复吗？',
   ago: '前',
   timeError: '结束时间与开始时间选择错误',
+  loginFailed: '登录失败！',
 };
 export default messages;

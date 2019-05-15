@@ -78,10 +78,11 @@ export class EditSchedule extends Component {
         calendarOptionId: schedule.calendarId,
       }, () => {
         const calendarIndex = this.state.calendarNames[1].indexOf(this.state.calendarOptionId);
-        if (calendarIndex) {
+        if (calendarIndex !== undefined) {
           this.setState({
             calendarOption: this.state.calendarNames[0][calendarIndex],
           });
+          document.getElementById('calendarSelect').value = this.state.calendarNames[0][calendarIndex];
         }
         const startTime = this.state.scheduleInfo.startTime.split('T')[0];
         const endTime = this.state.scheduleInfo.endTime.split('T')[0];
@@ -125,7 +126,10 @@ export class EditSchedule extends Component {
   }
 
   calendarOptionsChange(event) {
-    this.setState({ calendarOption: event.target.value });
+    this.setState({
+      calendarOption: event.target.value,
+      calendarOptionId: this.state.calendarNames[1][event.target.selectedIndex],
+    });
   }
 
   // repeatOptionsChange(event) {
@@ -280,9 +284,8 @@ export class EditSchedule extends Component {
 
   findSelectName(membersId) {
     const memberList = this.state.teamMember;
-    let memberSelectList = [];
     for (let i = 0; i < membersId.length; i++) {
-      memberSelectList = memberList.map((item, index) => {
+      memberList.map((item, index) => {
         if (item.id === membersId[i]) {
           document.getElementsByClassName('memberCheckbox')[index].checked = 'true';
           return item.name;
@@ -299,9 +302,10 @@ export class EditSchedule extends Component {
     // const remindOptions = [];
     const memberList = [];
     const calendarNames = this.state.calendarNames[0];
+    const calendarIds = this.state.calendarNames[1];
     for (let i = 0; i < calendarNames.length; i++) {
       calendarOptions.push(
-        <option value={calendarNames[i]} key={`calendarOptions${i}`}>{calendarNames[i]}</option>
+        <option value={calendarNames[i]} data-id={calendarIds[i]} key={`calendarOptions${i}`}>{calendarNames[i]}</option>
       );
     }
     // for (let i = 0; i < messages.remindSelect.length; i++) {
@@ -342,7 +346,7 @@ export class EditSchedule extends Component {
                 </div>
                 <div className={styles.ScheduleItem}>
                   <span>{messages.calendar}</span>
-                  <select id="calendarSelect" className={styles.calendarSelect} value={this.state.calendarOption} onChange={this.calendarOptionsChange}>{calendarOptions}</select>
+                  <select id="calendarSelect" className={styles.calendarSelect} onChange={this.calendarOptionsChange}>{calendarOptions}</select>
                 </div>
                 <div className={styles.ScheduleItem}>
                   <span>{messages.type}</span>

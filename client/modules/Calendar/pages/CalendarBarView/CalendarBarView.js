@@ -121,7 +121,10 @@ export class CalendarBarView extends Component {
     browserHistory.push(`addCalendarBar/${this.state.nowTime}`);
   }
   editCalendarChange() {
-    browserHistory.push(`editCalendarBar/${this.state.calendarListCache[this.state.calendarNum].calendarId}/${this.state.calendarListCache[this.state.calendarNum].name}/${this.state.calendarListCache[this.state.calendarNum].color}`);
+    browserHistory.push(`editCalendarBar/
+    ${this.state.calendarListCache[this.state.calendarNum].calendarId}/
+    ${this.state.calendarListCache[this.state.calendarNum].name}/
+    ${this.state.calendarListCache[this.state.calendarNum].color}`);
   }
 
   deleteCalendarChange() {
@@ -133,7 +136,7 @@ export class CalendarBarView extends Component {
     document.getElementById('smallCalendarColorEdit').style.display = 'none';
     this.setState({
       CalendarList: [],
-    }, function () {
+    }, () => {
       this.requestCalendarBar();
     });
     // console.log(result);
