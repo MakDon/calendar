@@ -1,7 +1,6 @@
-import { getTeammateIdsIHCI } from './IHCI.adaptor';
 
 export function getTeammateIds(teamId, callback) {
-  if (process.env.NODE_ENV === 'development') {
+  if (process.env.NODE_ENV !== 'production') {
     const error = '';
     const teammates = [
       { id: 'ThisIsATestingUserId', name: 'Barbera' },
@@ -14,6 +13,5 @@ export function getTeammateIds(teamId, callback) {
     // implement your own adaptor here
     // callback arguments: teammates, err
     // WARNING: teammates should include the user himself / herself
-    getTeammateIdsIHCI(teamId, callback);
   }
 }

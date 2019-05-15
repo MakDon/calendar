@@ -9,16 +9,15 @@
 
 import unittest
 import json
+import copy
 from .util import get_status_code_by_request
 from .util import get_login_cookie
 from .util import get_response
 from .util import get_a_calendarId
+from .util import calendar_collection
 
 calendar_id_to_delete = ""
 
-with open("./test/postman_collection.json") as json_file:
-    collection = json.load(json_file)
-    calendar_collection = collection["item"][0]["item"][0]["item"]
 
 
 class TestCalendar(unittest.TestCase):
@@ -46,7 +45,7 @@ class TestCalendar(unittest.TestCase):
             raise FileNotFoundError
 
     def test02_add_calendar_400(self):
-        request_info = calendar_collection[0]["request"]
+        request_info = copy.deepcopy(calendar_collection[0]["request"])
         request_info["body"]["raw"] = '{}'
         cookie = get_login_cookie()
         res = get_response(request_info, cookie)

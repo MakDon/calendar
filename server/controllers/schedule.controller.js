@@ -6,7 +6,6 @@ import cuid from 'cuid';
 import sanitizeHtml from 'sanitize-html';
 import Comment from '../models/comment';
 const Promise = require('bluebird');
-// const Promise = require('Promise');
 
 const language = config.language;
 

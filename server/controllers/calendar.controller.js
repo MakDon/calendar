@@ -68,7 +68,6 @@ export function addCalendar(req, res) {
     });
     return;
   }
-
   const newCalendar = new Calendar();
   newCalendar.calendarId = cuid();
   newCalendar.name = sanitizeHtml(req.body.name);
@@ -81,12 +80,14 @@ export function addCalendar(req, res) {
         status: 500,
         msg: glossary.internalError[language],
       });
+    } else {
+      res.json({
+        status: 200,
+        msg: glossary.success[language],
+        calendarId: saved.calendarId,
+      });
+      res.send();
     }
-    res.json({
-      status: 200,
-      msg: glossary.success[language],
-      calendarId: saved.calendarId });
-    res.send();
   });
 }
 

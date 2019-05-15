@@ -12,7 +12,7 @@ import unittest
 import json
 from .util import get_status_code_by_request
 
-with open("./test/postman_collection.json") as json_file:
+with open("./server/test/postman_collection.json") as json_file:
     collection = json.load(json_file)
     login_collection = collection["item"][2]
 

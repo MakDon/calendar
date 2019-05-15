@@ -12,10 +12,11 @@ const app = new Express();
 
 // Set Development modes checks
 const isDevMode = process.env.NODE_ENV === 'development' || false;
+const isTestMode = process.env.NODE_ENV === 'test' || false;
 const isProdMode = process.env.NODE_ENV === 'production' || false;
 
 // Run Webpack dev server in development mode
-if (isDevMode) {
+if (isDevMode || isTestMode) {
   // Webpack Requirements
   // eslint-disable-next-line global-require
   const webpack = require('webpack');
@@ -53,17 +54,17 @@ import serverConfig from './config';
 import glossary from './util/glossary';
 
 // Set native promises as mongoose promise
+// TODO: use bluebird and check
 mongoose.Promise = global.Promise;
 
 // MongoDB Connection
-if (process.env.NODE_ENV !== 'test') {
-  mongoose.connect(serverConfig.mongoURL, (error) => {
-    if (error) {
-      console.error('Please make sure Mongodb is installed and running!'); // eslint-disable-line no-console
-      throw error;
-    }
-  });
-}
+mongoose.connect(serverConfig.mongoURL, (error) => {
+  if (error) {
+    console.error('Please make sure Mongodb is installed and running!'); // eslint-disable-line no-console
+    throw error;
+  }
+});
+
 
 // Apply body Parser and server public assets and routes
 app.use(compression());
@@ -87,13 +88,8 @@ app.use((req, res, next) => {
       res.status(403)
         .send({ status: 403, msg: glossary.notLoginMSG[serverConfig.language] });
     } else if (!req.session.teamId) {
-      if (!req.session.userId) {
-        res.status(403)
-          .send({ status: 403, msg: glossary.notLoginMSG[serverConfig.language] });
-      } else {
-        res.status(403)
-          .send({ status: 403, msg: glossary.noTeamId[serverConfig.language] });
-      }
+      res.status(403)
+        .send({ status: 403, msg: glossary.noTeamId[serverConfig.language] });
     } else {
       next();
     }

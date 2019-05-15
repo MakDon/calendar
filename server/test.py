@@ -3,8 +3,7 @@
 # author:makdon
 #
 # usage:
-# cd server
-# python3 test.py
+# npm run test
 #
 # Life is short, i use Python.
 

@@ -5,7 +5,7 @@ from .util import get_login_cookie
 from .util import get_response
 from .util import get_a_calendarId
 
-with open("./test/postman_collection.json") as json_file:
+with open("./server/test/postman_collection.json") as json_file:
     collection = json.load(json_file)
     team_collection = collection["item"][0]["item"][3]["item"]
 

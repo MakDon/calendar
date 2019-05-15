@@ -1,7 +1,6 @@
-import { remindIHCI } from './IHCI.adaptor';
 
 export function remind(target, scheduleId, source, callback) {
-  if (process.env.NODE_ENV === 'development') {
+  if (process.env.NODE_ENV !== 'production') {
     const error = '';
     console.log('----remind------');
     console.log({
@@ -9,9 +8,9 @@ export function remind(target, scheduleId, source, callback) {
       scheduleId,
       source,
     });
+    console.log('----remind------');
     callback(error);
   } else {
     // implement your own adaptor here
-    remindIHCI(target, scheduleId, source, callback);
   }
 }

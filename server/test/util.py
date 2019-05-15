@@ -13,13 +13,15 @@ import json
 login_cookie = ""
 
 
-with open("./test/postman_collection.json") as json_file:
+with open("./server/test/postman_collection.json") as json_file:
     collection = json.load(json_file)
     calendar_collection = collection["item"][0]["item"][0]["item"]
     schedule_collection = collection["item"][0]["item"][1]["item"]
+    comment_collection = collection["item"][0]["item"][2]["item"]
+    static_collection = collection["item"][0]["item"][4]["item"]
 
 
-def format_headers(headers: list):
+def format_headers(headers):
     new_headers = {}
     for header in headers:
         new_headers[header["key"]] = header["value"]
@@ -30,7 +32,10 @@ def get_response(request, cookie=None):
     headers = format_headers(request["header"])
     data = request["body"]["raw"]
     url = "http://" + request["url"]["raw"]
-    res = requests.post(url, headers=headers, data=data, cookies=cookie)
+    if request['method'] == 'POST':
+        res = requests.post(url, headers=headers, data=data, cookies=cookie)
+    elif request['method'] == 'GET':
+        res = requests.get(url, headers=headers, data=data, cookies=cookie)
     return res
 
 
@@ -43,7 +48,7 @@ def get_login_cookie():
     global login_cookie
     if login_cookie:
         return login_cookie
-    with open("./test/postman_collection.json") as json_file:
+    with open("./server/test/postman_collection.json") as json_file:
         collection = json.load(json_file)
         request = collection["item"][1]['request']
     headers = format_headers(request["header"])

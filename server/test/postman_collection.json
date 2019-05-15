@@ -1649,6 +1649,85 @@
 					"_postman_isSubFolder": true
 				},
 				{
+					"name": "static",
+					"item": [
+						{
+							"name": "index",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "127.0.0.1:8000",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000"
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "vendor",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "127.0.0.1:8000/vendor.js",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"vendor.js"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "app",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "127.0.0.1:8000/app.js",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"app.js"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"description": "test fetching static files",
+					"_postman_isSubFolder": true
+				},
+				{
 					"name": "loginCalendar",
 					"request": {
 						"method": "POST",

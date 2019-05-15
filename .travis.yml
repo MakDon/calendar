@@ -1,10 +1,12 @@
 language: node_js
 node_js:
-  - '6'
   - '8'
   - '10'
+services: mongodb
 before_install:
   - 'npm install -g npm@6'
+  - 'pyenv shell 2.7.14'
+  - 'pip install requests'
 before_script:
   - sleep 15
 after_success:
