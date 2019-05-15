@@ -141,6 +141,9 @@ export function editSchedule(req, res) {
   }
 
   const newSchedule = {};
+  if (req.body.calendarId) {
+    newSchedule.calendarId = sanitizeHtml(req.body.calendarId);
+  }
   if (req.body.scheduleName) {
     newSchedule.scheduleName = req.body.scheduleName;
   }

@@ -199,7 +199,7 @@ export class CalendarDay extends Component {
     let schedule = e.target;
     e.stopPropagation();
     e.nativeEvent.stopPropagation();
-    if(e.target.nodeName === 'SPAN'){
+    if (e.target.nodeName === 'SPAN') {
       schedule = e.target.parentElement;
     }
     this.props.scheduleListItemDelete();
@@ -283,11 +283,12 @@ export class CalendarDay extends Component {
         if (this.props.rowKey === 0) {
           LeftDiff = moment(this.state.separateScheduleList[i].startTimeLeft).day() - 1 + LeftDiff;
         }
-        console.log(this.state.separateScheduleList[i])
+        // console.log(this.state.separateScheduleList[i])
         itemWeeks.push(
           <div
             className={styles.weekScheduleItem} key={`weekScheduleItem${this.props.day + i}`}
-            style={{ width: `calc(${dayDiff}/7*100%)`, left: `calc(${LeftDiff}/7*100%)`, top: `${this.calcDayScheduleNum(moment(this.state.separateScheduleList[i].startTime).date(), dayDiff) * 28}px` }}
+            style={{ width: `calc(${dayDiff}/7*100%)`, left: `calc(${LeftDiff}/7*100%)`,
+              top: `${this.calcDayScheduleNum(moment(this.state.separateScheduleList[i].startTime).date(), dayDiff) * 28}px` }}
           >
             <div className={styles.dayScheduleBorder} onClick={this.showDetailSmallBoard}>
               <div className={`${styles.dayScheduleContent} ${styles[`backgroundColor_${this.state.separateScheduleList[i].calendarColor}`]}`}>
@@ -372,7 +373,10 @@ export class CalendarDay extends Component {
         for (let i = 0; i < 7; i++) {
           if (this.props.day + i > lastDate) {
             itemsDays.push(
-              <div className={styles.Day} key={`day${this.props.day + i - lastDate}`} onClick={() => { this.createNewSchedule(this.props.rowKey, i, this.props.day + i - lastDate); }}>
+              <div
+                className={styles.Day} key={`day${this.props.day + i - lastDate}`}
+                onClick={() => { this.createNewSchedule(this.props.rowKey, i, this.props.day + i - lastDate); }}
+              >
                 <div className={styles.Dayinfo}>
                   <span>{this.props.day + i - lastDate}</span>
                 </div>

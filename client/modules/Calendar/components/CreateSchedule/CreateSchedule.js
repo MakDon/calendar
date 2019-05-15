@@ -28,5 +28,5 @@ export class CreateSchedule extends Component {
 CreateSchedule.propTypes = {
   setCreateScheduleBoardPosition: PropTypes.func.isRequired,
   date: PropTypes.any,
-}
+};
 export default CreateSchedule;

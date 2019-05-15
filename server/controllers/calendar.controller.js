@@ -1,5 +1,4 @@
 import Calendar from '../models/calendar';
-import Schedule from '../models/schedule';
 import glossary from '../util/glossary';
 import config from '../config';
 import cuid from 'cuid';

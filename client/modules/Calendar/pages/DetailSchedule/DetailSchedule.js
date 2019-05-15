@@ -302,6 +302,7 @@ export class DetailSchedule extends Component {
   submitComment() {
     const content = document.getElementById('commentTextarea').value;
     if (content === '') {
+      // eslint-disable-next-line no-alert
       alert(messages.commentIsNull);
     } else {
       if (this.state.ifReply) {
@@ -469,9 +470,8 @@ export class DetailSchedule extends Component {
 
   findSelectName(membersId) {
     const memberList = this.state.teamMember;
-    let memberSelectList = [];
     for (let i = 0; i < membersId.length; i++) {
-      memberSelectList = memberList.map((item, index) => {
+      memberList.map((item, index) => {
         if (item.id === membersId[i]) {
           document.getElementsByClassName('memberCheckbox')[index].checked = 'true';
           return item.name;

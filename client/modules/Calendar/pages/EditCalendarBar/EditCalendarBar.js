@@ -4,6 +4,7 @@ import styles from './EditCalendarBar.css';
 import { browserHistory } from 'react-router';
 import messages from '../../../../../config/glossary';
 import configUrl from '../../../../../config/config';
+import { requestApi } from '../../../../util/apiCaller';
 
 export class EditCalendarBar extends Component {
   constructor(props) {
@@ -12,6 +13,7 @@ export class EditCalendarBar extends Component {
       checkedLabel: this.props.params.calendarColor,
     };
     this.saveCalendar = this.saveCalendar.bind(this);
+    this.requestAddCalendar = this.requestAddCalendar.bind(this);
   }
 
   componentDidMount() {
@@ -49,13 +51,13 @@ export class EditCalendarBar extends Component {
         calendarId,
       }),
     };
-    fetch(requestUrl, data)
-      .then(response => response.json())
-      // eslint-disable-next-line no-unused-vars
-      .then(() => {
-        browserHistory.push('/');
-      })
-      .catch(e => console.log('error', e));
+    requestApi(requestUrl, data, this.afterAddCalendar);
+  }
+
+  afterAddCalendar(result) {
+    if (result.status === 200) {
+      browserHistory.push('/');
+    }
   }
 
   skipToIndexPage() {

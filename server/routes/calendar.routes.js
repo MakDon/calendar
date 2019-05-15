@@ -24,6 +24,4 @@ router.route('/schedule/comment/add').post(CommentController.addComment);
 router.route('/schedule/comment/reply').post(CommentController.replyComment);
 router.route('/schedule/comment/delete').post(CommentController.deleteComment);
 
-
-
 export default router;
