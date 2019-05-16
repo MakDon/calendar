@@ -58,8 +58,7 @@
     "redux": "^3.5.2",
     "redux-thunk": "^2.1.0",
     "request": "^2.88.0",
-    "sanitize-html": "^1.11.4",
-    "yargs-parser": "^13.1.0"
+    "sanitize-html": "^1.11.4"
   },
   "devDependencies": {
     "ava": "^0.15.2",
