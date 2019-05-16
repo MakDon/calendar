@@ -8,6 +8,7 @@ import Schedule from '../models/schedule';
 
 const language = config.language;
 
+//  TODO:rename to 'checkSchedulePermission' and move it to util
 function checkTeamId(req, res, scheduleId, callback) {
   Schedule.findOne({ scheduleId }).exec((err, schedule) => {
     if (err) {

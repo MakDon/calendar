@@ -45,7 +45,7 @@
 							},
 							"response": [
 								{
-									"name": "创建日历",
+									"name": "create",
 									"originalRequest": {
 										"method": "POST",
 										"header": [
@@ -255,7 +255,7 @@
 							},
 							"response": [
 								{
-									"name": "修改日历",
+									"name": "edit",
 									"originalRequest": {
 										"method": "POST",
 										"header": [
@@ -358,7 +358,7 @@
 							},
 							"response": [
 								{
-									"name": "删除日历",
+									"name": "delete",
 									"originalRequest": {
 										"method": "POST",
 										"header": [
@@ -571,7 +571,7 @@
 							},
 							"response": [
 								{
-									"name": "创建日程",
+									"name": "create schedule",
 									"originalRequest": {
 										"method": "POST",
 										"header": [
@@ -1763,40 +1763,6 @@
 				}
 			],
 			"description": "测试创建日历，修改日历（名字/颜色）和删除日历功能"
-		},
-		{
-			"name": "loginCalendar",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\"ticket\": \"qlwrsid%3A3A611142-82AF-49BC-9424-05B5DDA0BC4F.zcbMLs%2BsLltamrgMvDbym0lW%2FHSfvYImapRBOmbEER0\", \"teamId\": \"FakeTeamId\"}"
-				},
-				"url": {
-					"raw": "127.0.0.1:8000/api/calendar/login",
-					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
-					],
-					"port": "8000",
-					"path": [
-						"api",
-						"calendar",
-						"login"
-					]
-				}
-			},
-			"response": []
 		}
 	]
 }

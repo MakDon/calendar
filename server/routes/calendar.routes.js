@@ -17,8 +17,8 @@ router.route('/schedule/list').post(ScheduleController.getScheduleList);
 router.route('/schedule/edit').post(ScheduleController.editSchedule);
 router.route('/schedule/delete').post(ScheduleController.deleteSchedule);
 
-router.route('/schedule/comment/list').post(CommentController.getCommentBySchedule);
 router.route('/schedule/comment/add').post(CommentController.addComment);
+router.route('/schedule/comment/list').post(CommentController.getCommentBySchedule);
 // edit comment is commented because there's no edit history.
 // router.route('/schedule/comment/edit').post(CommentController.editComment);
 router.route('/schedule/comment/reply').post(CommentController.replyComment);
