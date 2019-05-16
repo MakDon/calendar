@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styles from './Calendar.css';
 import CalendarView from './pages/CalendarView/CalendarView';
 import CalendarBarView from './pages/CalendarBarView/CalendarBarView';
-import configUrl from '../../../config/config';
+import configUrl from '../../config/config';
 import { requestApi } from '../../util/apiCaller';
 
 export class Calendar extends Component {

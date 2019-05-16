@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import settPng from './setting.png';
 import styles from './CalendarBar.css';
-import configUrl from '../../../../../config/config';
+import configUrl from '../../../../config/config';
 import { requestApi } from '../../../../util/apiCaller';
 export class CalendarBar extends Component {
 
