@@ -764,7 +764,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\"scheduleName\":\"Test 11111111111Schedule\", \"scheduleId\":\"cjul5w15200015f9k9ihwi1y3\"}"
+									"raw": "{\"calendarId\": \"calendarId\", \"startTime\":\"2019-05-02\", \"endTime\": \"2019-05-02\", \"location\": \"GZ, China\", \"isWholeDay\": \"on\", \"members\": [\"FakeTeammateId1\", \"FakeTeammateId2\", \"FakeTeammateId3\"], \"scheduleId\":\"schedule_id\"}"
 								},
 								"url": {
 									"raw": "127.0.0.1:8000/api/calendar/schedule/edit",
@@ -798,7 +798,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\"scheduleName\":\"Test 11111111111Schedule\", \"scheduleId\":\"cjv227ni10002jw9kterq5n9z\"}"
+											"raw": "{\"calendarId\": \"calendarId\", \"startTime\":\"2019-05-02\", \"endTime\": \"2019-05-02\", \"location\": \"GZ, China\", \"isWholeDay\": \"on\", \"members\": [\"FakeTeammateId1\", \"FakeTeammateId2\", \"FakeTeammateId3\"], \"scheduleId\":\"schedule_id\"}"
 										},
 										"url": {
 											"raw": "127.0.0.1:8000/api/calendar/schedule/edit",
@@ -843,7 +843,7 @@
 										},
 										{
 											"key": "Date",
-											"value": "Tue, 30 Apr 2019 03:25:55 GMT"
+											"value": "Thu, 16 May 2019 02:57:12 GMT"
 										},
 										{
 											"key": "Connection",

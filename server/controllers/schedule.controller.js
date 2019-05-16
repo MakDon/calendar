@@ -141,6 +141,7 @@ export function editSchedule(req, res) {
   }
 
   const newSchedule = {};
+  // TODO: check calendarId before editing.
   if (req.body.calendarId) {
     newSchedule.calendarId = sanitizeHtml(req.body.calendarId);
   }
