@@ -11,6 +11,7 @@ export function sendRemind(req, res) {
     });
     return;
   }
+  // TODO: 校验用户是否有对应日程的权限。
   remind(req.body.target, req.body.scheduleId, req.session.userId, (err) => {
     if (err) {
       res.status(500).send({

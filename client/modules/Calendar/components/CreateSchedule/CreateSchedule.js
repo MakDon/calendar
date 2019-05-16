@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-// import PropTypes from 'prop-types';
 import styles from './CreateSchedule.css';
-import messages from '../../../../../config/glossary';
+import messages from '../../../../config/glossary';
 import PropTypes from 'prop-types';
 
 export class CreateSchedule extends Component {

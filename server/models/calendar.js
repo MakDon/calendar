@@ -8,7 +8,6 @@ const calendarSchema = new Schema({
   teamId: { type: 'String', required: true, index: true },
   dateCreated: { type: 'Date', default: Date.now, required: true },
   color: { type: 'String', required: true },
-  deletedFlag: { type: 'Boolean', default: false, required: true },
 });
 
 export default mongoose.model('Calendar', calendarSchema);

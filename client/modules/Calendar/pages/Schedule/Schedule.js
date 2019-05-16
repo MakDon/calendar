@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styles from './Schedule.css';
-import messages from '../../../../../config/glossary';
+import messages from '../../../../config/glossary';
 
 export class Schedule extends Component {
 

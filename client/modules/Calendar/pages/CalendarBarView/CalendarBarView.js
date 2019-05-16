@@ -4,8 +4,8 @@ import styles from './CalendarBarView.css';
 import CalendarBar from '../../components/CalendarBar/CalendarBar';
 import { browserHistory } from 'react-router';
 import { requestApi } from '../../../../util/apiCaller';
-import configUrl from '../../../../../config/config';
-import messages from '../../../../../config/glossary';
+import configUrl from '../../../../config/config';
+import messages from '../../../../config/glossary';
 
 export class CalendarBarView extends Component {
 // 日历名称右侧设置齿轮弹出框应可以选择并更改日历颜色。
@@ -121,10 +121,10 @@ export class CalendarBarView extends Component {
     browserHistory.push(`addCalendarBar/${this.state.nowTime}`);
   }
   editCalendarChange() {
-    browserHistory.push(`editCalendarBar/
-    ${this.state.calendarListCache[this.state.calendarNum].calendarId}/
-    ${this.state.calendarListCache[this.state.calendarNum].name}/
-    ${this.state.calendarListCache[this.state.calendarNum].color}`);
+    browserHistory.push(`editCalendarBar/${
+    this.state.calendarListCache[this.state.calendarNum].calendarId}/${
+    this.state.calendarListCache[this.state.calendarNum].name}/${
+    this.state.calendarListCache[this.state.calendarNum].color}`);
   }
 
   deleteCalendarChange() {

@@ -50,7 +50,7 @@ def get_login_cookie():
         return login_cookie
     with open("./server/test/postman_collection.json") as json_file:
         collection = json.load(json_file)
-        request = collection["item"][1]['request']
+        request = collection["item"][0]["item"][5]['request']
     headers = format_headers(request["header"])
     data = request["body"]["raw"]
     url = "http://" + request["url"]["raw"]

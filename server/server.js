@@ -59,6 +59,7 @@ mongoose.Promise = global.Promise;
 
 // MongoDB Connection
 mongoose.connect(serverConfig.mongoURL, (error) => {
+  /* istanbul ignore next */
   if (error) {
     console.error('Please make sure Mongodb is installed and running!'); // eslint-disable-line no-console
     throw error;
@@ -140,6 +141,7 @@ const renderFullPage = (html, initialState) => {
 
 const renderError = err => {
   const softTab = '&#32;&#32;&#32;&#32;';
+  /* istanbul ignore next */
   const errTrace = isProdMode ?
     `:<br><br><pre style="color:red">${softTab}${err.stack.replace(/\n/g, `<br>${softTab}`)}</pre>` : '';
   return renderFullPage(`Server Error${errTrace}`, {});
@@ -148,6 +150,7 @@ const renderError = err => {
 // Server Side Rendering based on routes matched by React-router.
 app.use((req, res, next) => {
   match({ routes, location: req.url }, (err, redirectLocation, renderProps) => {
+    /* istanbul ignore next */
     if (err) {
       return res.status(500).end(renderError(err));
     }
@@ -192,6 +195,7 @@ app.use((req, res, next) => {
 
 // start app
 app.listen(serverConfig.port, (error) => {
+  /* istanbul ignore next */
   if (!error) {
     console.log(`MERN is running on port: ${serverConfig.port}! Build something amazing!`); // eslint-disable-line
   }

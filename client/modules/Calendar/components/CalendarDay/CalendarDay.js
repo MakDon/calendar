@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styles from './CalendarDay.css';
-// import Schedule from '../../pages/Schedule/Schedule';
 import CreateSchedule from '../CreateSchedule/CreateSchedule';
-// import configUrl from '../../../../../config/config';
-// import messages from '../../../../../config/glossary';
-// import { requestApi } from '../../../../util/apiCaller';
 import moment from 'moment';
 
 export class CalendarDay extends Component {

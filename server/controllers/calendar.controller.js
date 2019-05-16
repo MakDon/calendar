@@ -113,7 +113,7 @@ export function editCalendar(req, res) {
       });
     } else {
       // If found nothing
-      if (Array.isArray(foundCalendar) && foundCalendar.length === 0 || !foundCalendar) {
+      if (!foundCalendar) {
         res.status(404).send({
           status: 404,
           msg: glossary.notFound[language],

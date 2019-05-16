@@ -45,7 +45,7 @@
 							},
 							"response": [
 								{
-									"name": "创建日历",
+									"name": "create",
 									"originalRequest": {
 										"method": "POST",
 										"header": [
@@ -255,7 +255,7 @@
 							},
 							"response": [
 								{
-									"name": "修改日历",
+									"name": "edit",
 									"originalRequest": {
 										"method": "POST",
 										"header": [
@@ -358,7 +358,7 @@
 							},
 							"response": [
 								{
-									"name": "删除日历",
+									"name": "delete",
 									"originalRequest": {
 										"method": "POST",
 										"header": [
@@ -571,7 +571,7 @@
 							},
 							"response": [
 								{
-									"name": "创建日程",
+									"name": "create schedule",
 									"originalRequest": {
 										"method": "POST",
 										"header": [
@@ -764,7 +764,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\"scheduleName\":\"Test 11111111111Schedule\", \"scheduleId\":\"cjul5w15200015f9k9ihwi1y3\"}"
+									"raw": "{\"calendarId\": \"calendarId\", \"startTime\":\"2019-05-02\", \"endTime\": \"2019-05-02\", \"location\": \"GZ, China\", \"isWholeDay\": \"on\", \"members\": [\"FakeTeammateId1\", \"FakeTeammateId2\", \"FakeTeammateId3\"], \"scheduleId\":\"schedule_id\"}"
 								},
 								"url": {
 									"raw": "127.0.0.1:8000/api/calendar/schedule/edit",
@@ -798,7 +798,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\"scheduleName\":\"Test 11111111111Schedule\", \"scheduleId\":\"cjv227ni10002jw9kterq5n9z\"}"
+											"raw": "{\"calendarId\": \"calendarId\", \"startTime\":\"2019-05-02\", \"endTime\": \"2019-05-02\", \"location\": \"GZ, China\", \"isWholeDay\": \"on\", \"members\": [\"FakeTeammateId1\", \"FakeTeammateId2\", \"FakeTeammateId3\"], \"scheduleId\":\"schedule_id\"}"
 										},
 										"url": {
 											"raw": "127.0.0.1:8000/api/calendar/schedule/edit",
@@ -843,7 +843,7 @@
 										},
 										{
 											"key": "Date",
-											"value": "Tue, 30 Apr 2019 03:25:55 GMT"
+											"value": "Thu, 16 May 2019 02:57:12 GMT"
 										},
 										{
 											"key": "Connection",
@@ -1763,40 +1763,6 @@
 				}
 			],
 			"description": "测试创建日历，修改日历（名字/颜色）和删除日历功能"
-		},
-		{
-			"name": "loginCalendar",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\"ticket\": \"qlwrsid%3A3A611142-82AF-49BC-9424-05B5DDA0BC4F.zcbMLs%2BsLltamrgMvDbym0lW%2FHSfvYImapRBOmbEER0\", \"teamId\": \"FakeTeamId\"}"
-				},
-				"url": {
-					"raw": "127.0.0.1:8000/api/calendar/login",
-					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
-					],
-					"port": "8000",
-					"path": [
-						"api",
-						"calendar",
-						"login"
-					]
-				}
-			},
-			"response": []
 		}
 	]
 }

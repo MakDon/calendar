@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styles from './EditCalendarBar.css';
 import { browserHistory } from 'react-router';
-import messages from '../../../../../config/glossary';
-import configUrl from '../../../../../config/config';
+import messages from '../../../../config/glossary';
+import configUrl from '../../../../config/config';
 import { requestApi } from '../../../../util/apiCaller';
 
 export class EditCalendarBar extends Component {

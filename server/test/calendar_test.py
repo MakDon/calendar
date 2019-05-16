@@ -157,3 +157,12 @@ class TestCalendar(unittest.TestCase):
         status_code = get_status_code_by_request(request_info, cookie)
         self.assertEqual(status_code, 404)
 
+
+    def test12_delete_calendar_400(self):
+        calendar_id = "FakeCalendarId"
+        cookie = get_login_cookie()
+        request_info = calendar_collection[3]["request"]
+        request_info["body"]["raw"] = '{"Id":"' + calendar_id + '"}'
+        status_code = get_status_code_by_request(request_info, cookie)
+        self.assertEqual(status_code, 400)
+

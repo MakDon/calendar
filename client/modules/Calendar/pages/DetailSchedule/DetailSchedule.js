@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-// import PropTypes from 'prop-types';
 import styles from './DetailSchedule.css';
-import messages from '../../../../../config/glossary';
+import messages from '../../../../config/glossary';
 import events from './events.png';
-import configUrl from '../../../../../config/config';
-import timeTransfer from '../../../../../config/calcTime';
+import configUrl from '../../../../config/config';
+import timeTransfer from '../../../../config/calcTime';
 import { requestApi } from '../../../../util/apiCaller';
 import { browserHistory } from 'react-router';
 import PropTypes from 'prop-types';
