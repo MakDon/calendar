@@ -20,7 +20,7 @@ cd calendar
 npm install  
 npm run start
 ```
-The calendar would run in development mode. Visit `120.0.0.1:8000` to experience the calendar.
+The calendar would run in development mode. Visit `127.0.0.1:8000` to experience the calendar.
 
 ## Deploy
 
