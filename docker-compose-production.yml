@@ -12,6 +12,7 @@ services:
     environment:
       NODE_ENV: production
       MONGO_URL: mongodb://db:27017/calendar
+      WAIT_HOSTS: db:27017
   db:
     image: mongo:latest
     volumes:
