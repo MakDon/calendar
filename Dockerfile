@@ -11,7 +11,6 @@ COPY .babelrc index.js nodemon.json webpack.config.babel.js webpack.config.dev.j
 COPY client ./client
 COPY Intl ./Intl
 COPY server ./server
-COPY config ./config
 CMD ["npm", "start"]
 
 FROM development as build
