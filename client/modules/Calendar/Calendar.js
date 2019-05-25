@@ -27,7 +27,7 @@ export class Calendar extends Component {
       }
       this.requestLoginCalendar(ticket, teamId);
     } else {
-      window.addEventListener('message', (e) => {
+      /* window.addEventListener('message', (e) => {
         const height = document.body.scrollHeight;
         top.postMessage(height, configUrl.iframeParent);
         // if (!e.data) {
@@ -39,7 +39,12 @@ export class Calendar extends Component {
         if (ticket && teamId) {
           this.requestLoginCalendar(ticket, teamId);
         }
-      }, false);
+      }, false);*/
+      // Use fake info for presentation temporarily
+      ticket = 'ThisIsTestTicket';
+      teamId = 'ThisIsTestTeamId';
+      this.requestLoginCalendar(ticket, teamId);
+      console.log('WARNING: uncomment window.addEventListener in client/modules/Calendar/Calendar.js to use in production');
     }
   }
 
