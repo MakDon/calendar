@@ -12,5 +12,9 @@ export function getUserId(ticket, callback) {
     callback(error, userId);
   } else {
     // implement your own adaptor here
+    const error = '';
+    const userId = 'ThisIsATestingUserId';
+    callback(error, userId);
+    console.log('WARNING: login adaptor is not implement yet'); // eslint-disable-line no-console
   }
 }
