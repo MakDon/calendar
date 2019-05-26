@@ -155,6 +155,9 @@ export class CalendarView extends Component {
       }, () => {
         this.setThisMonthSchedule();
       });
+    } else {
+      // eslint-disable-next-line no-alert
+      alert(messages.ScheduleLoadFailed);
     }
   }
 
@@ -444,10 +447,14 @@ export class CalendarView extends Component {
     const startTime = document.getElementById('startTime').value;
     const endTime = document.getElementById('endTime').value;
     // const ifShowCreator = document.getElementById('showCreator').value;
-    const ifRepeat = this.state.repeatOption;
-    const ifRemind = this.state.remindOption;
+    // const ifRepeat = this.state.repeatOption;
+    // const ifRemind = this.state.remindOption;
     const location = document.getElementById('location').value;
-    // const color = document.getElementById('endTime').value;
+    if (calendarId === undefined) {
+      // eslint-disable-next-line no-alert
+      alert(messages.PleaseCreateCalendar);
+      return false;
+    }
     // time format is incorrect, so we need return false to interrupt this option
     if (moment(endTime).diff(moment(startTime), 'days') < 0) {
       // eslint-disable-next-line no-alert
@@ -467,8 +474,8 @@ export class CalendarView extends Component {
         startTime,
         endTime,
         // ifShowCreator,
-        ifRepeat,
-        ifRemind,
+        // ifRepeat,
+        // ifRemind,
         location,
       }),
     };
@@ -485,6 +492,9 @@ export class CalendarView extends Component {
         thisMonthSchedule: [[], [], [], [], []],
       });
       this.requestScheduleList();
+    } else {
+      // eslint-disable-next-line no-alert
+      alert(messages.ScheduleAddFailed);
     }
   }
 
@@ -558,6 +568,9 @@ export class CalendarView extends Component {
         thisMonthSchedule: [[], [], [], [], []],
       });
       this.requestScheduleList();
+    } else {
+      // eslint-disable-next-line no-alert
+      alert(messages.ScheduleDeleteFailed);
     }
   }
 

@@ -4,6 +4,7 @@ import CalendarView from './pages/CalendarView/CalendarView';
 import CalendarBarView from './pages/CalendarBarView/CalendarBarView';
 import configUrl from '../../config/config';
 import { requestApi } from '../../util/apiCaller';
+import messages from '../../config/glossary';
 
 export class Calendar extends Component {
   constructor(props) {
@@ -90,6 +91,9 @@ export class Calendar extends Component {
         }),
       };
       requestApi(requestUrl, data, this.printResult);
+    } else {
+      // eslint-disable-next-line no-alert
+      alert(messages.loginFailed);
     }
   }
 
@@ -101,6 +105,9 @@ export class Calendar extends Component {
         teammatesFormat = `${teammatesFormat + JSON.stringify(teammates[i])}-`;
       }
       localStorage.setItem('teammates', teammatesFormat);
+    } else {
+      // eslint-disable-next-line no-alert
+      alert(messages.MemberLoadFailed);
     }
   }
   render() {
