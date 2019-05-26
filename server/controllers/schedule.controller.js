@@ -4,8 +4,8 @@ import config from '../config';
 import Calendar from '../models/calendar';
 import cuid from 'cuid';
 import sanitizeHtml from 'sanitize-html';
-import Comment from '../models/comment';
 const Promise = require('bluebird');
+import { deleteRelativeComment } from '../util/util';
 
 const language = config.language;
 
@@ -224,7 +224,7 @@ export function deleteSchedule(req, res) {
         msg: glossary.notFound[language],
       });
     } else {
-      Comment.deleteMany({ scheduleId: req.body.scheduleId }, (err) => {
+      deleteRelativeComment(req.body.scheduleId, (err) => {
         if (err) {
           res.status(500).send({
             status: 500,
