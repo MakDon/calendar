@@ -22,31 +22,33 @@ schedule_id_created = ""
 
 class TestSchedule(unittest.TestCase):
 
-    def test00_setUp(self):
+    @classmethod
+    def setUpClass(cls):
         request_info = calendar_collection[0]["request"]
         cookie = get_login_cookie()
         res = get_response(request_info, cookie)
-        self.assertEqual(res.status_code, 200)
+        assert(res.status_code == 200)
         res_data = json.loads(res.text)
         calendar_id = res_data['calendarId']
         global calendar_id_to_delete
         calendar_id_to_delete = calendar_id
 
-    def test99_tearDown(self):
+    @classmethod
+    def tearDownClass(cls):
         calendar_id = calendar_id_to_delete
         cookie = get_login_cookie()
         if calendar_id:
             request_info = calendar_collection[3]["request"]
             request_info["body"]["raw"] = '{"calendarId":"' + calendar_id + '"}'
             status_code = get_status_code_by_request(request_info, cookie)
-            self.assertEqual(status_code, 200)
+            assert(status_code == 200)
             # check if it is deleted
             request_info = calendar_collection[1]["request"]
             res = get_response(request_info, cookie)
             res_data = json.loads(res.text)
             for cal in res_data["calendars"]:
                 if cal["calendarId"] == calendar_id:
-                    self.assertEqual(cal['name'], "test_edit")
+                    assert(cal['name'] == "test_edit")
                     raise KeyError
         else:
             raise Exception("unable to delete calendar made by test")
