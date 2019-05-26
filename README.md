@@ -7,7 +7,7 @@ The front end is made by [@yuchenzhou](https://github.com/yuchenzhou)
 
 ## Dependencies
 
-node  
+Node  
 MongoDB
 
 
