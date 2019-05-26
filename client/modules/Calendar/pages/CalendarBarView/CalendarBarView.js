@@ -113,6 +113,9 @@ export class CalendarBarView extends Component {
         CalendarList: tmpCalendarList,
         calendarListCache: calendarList,
       });
+    } else {
+      // eslint-disable-next-line no-alert
+      alert(messages.CalendarLoadFailed);
     }
   }
 
@@ -131,15 +134,19 @@ export class CalendarBarView extends Component {
     this.showDeleteCalendarRemind();
   }
 
-  printResult() {
-    document.getElementById('deleteCalendarRemind').style.display = 'none';
-    document.getElementById('smallCalendarColorEdit').style.display = 'none';
-    this.setState({
-      CalendarList: [],
-    }, () => {
-      this.requestCalendarBar();
-    });
-    // console.log(result);
+  printResult(result) {
+    if (result.status === 200) {
+      document.getElementById('deleteCalendarRemind').style.display = 'none';
+      document.getElementById('smallCalendarColorEdit').style.display = 'none';
+      this.setState({
+        CalendarList: [],
+      }, () => {
+        this.requestCalendarBar();
+      });
+    } else {
+      // eslint-disable-next-line no-alert
+      alert(messages.CalendarDeleteFailed);
+    }
   }
 
   enterDeleteCalendar() {

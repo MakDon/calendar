@@ -57,6 +57,9 @@ export class EditCalendarBar extends Component {
   afterAddCalendar(result) {
     if (result.status === 200) {
       browserHistory.push('/');
+    } else {
+      // eslint-disable-next-line no-alert
+      alert(messages.CalendarEditFailed);
     }
   }
 
