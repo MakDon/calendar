@@ -74,8 +74,10 @@ class TestComment(unittest.TestCase):
             request_info = schedule_collection[3]["request"]
             cookie = get_login_cookie()
             request_info["body"]["raw"] = '{"scheduleId": "' + schedule_id_created + '"}'
+            print(request_info["body"]["raw"])
             status_code = get_status_code_by_request(request_info, cookie)
-            self.assertEqual(status_code, 200)
+            # the schedule is deleted when deleting the calendar, so the res should be 404
+            self.assertEqual(status_code, 404)
         else:
             raise unittest.SkipTest('create schedule failed making that no schedule to delete')
 
