@@ -104,6 +104,9 @@ export class DetailSchedule extends Component {
         informMember: scheduleInfo.informMember,
       });
       this.findSelectName(scheduleInfo.informMember);
+    } else {
+      // eslint-disable-next-line no-alert
+      alert(messages.ScheduleLoadFailed);
     }
   }
 
@@ -121,6 +124,9 @@ export class DetailSchedule extends Component {
       this.setState({
         commentsList: result.comments,
       });
+    } else {
+      // eslint-disable-next-line no-alert
+      alert(messages.CommentLoadFailed);
     }
   }
 
@@ -282,6 +288,9 @@ export class DetailSchedule extends Component {
   afterScheduleDelete(result) {
     if (result.status === 200) {
       browserHistory.push('/');
+    } else {
+      // eslint-disable-next-line no-alert
+      alert(messages.CommentDeleteFailed);
     }
   }
 
@@ -415,6 +424,9 @@ export class DetailSchedule extends Component {
       }, () => {
         this.requestCommentsList();
       });
+    } else {
+      // eslint-disable-next-line no-alert
+      alert(messages.CommentReplyFailed);
     }
   }
 
@@ -464,6 +476,9 @@ export class DetailSchedule extends Component {
     if (result.status === 200) {
       this.requestScheduleInfo();
       document.getElementById('editInformMember').style.display = 'none';
+    } else {
+      // eslint-disable-next-line no-alert
+      alert(messages.InformMemberEditFailed);
     }
   }
 
