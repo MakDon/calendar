@@ -90,10 +90,12 @@ class TestSchedule(unittest.TestCase):
         self.assertEqual(status_code, 200)
 
     def test05_edit_schedule(self):
-        if schedule_id_created:
+        calendar_id = get_a_calendarId()
+        if schedule_id_created and calendar_id:
             request_info = schedule_collection[2]["request"]
             cookie = get_login_cookie()
             request_info["body"]["raw"] = request_info["body"]["raw"].replace('schedule_id', schedule_id_created)
+            request_info["body"]["raw"] = request_info["body"]["raw"].replace('calendarId', calendar_id)
             status_code = get_status_code_by_request(request_info, cookie)
             self.assertEqual(200, status_code)
             request_info["body"][
