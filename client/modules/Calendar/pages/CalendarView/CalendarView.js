@@ -44,7 +44,8 @@ export class CalendarView extends Component {
       // remindOption: messages.remindSelect[0],
       ifRotate: false,
       // showCreator: true,
-      ScheduleList: [[], [], [], [], []],
+      ScheduleList: [[], [], [], [], [], [], []],
+      calendarFilter: [[], [], [], [], []],
       thisMonthSchedule: [[], [], [], [], []],
       selectScheduleInfo: [],
       ifLogin: false,
@@ -71,6 +72,8 @@ export class CalendarView extends Component {
     this.hiddenSmallScheduleBorder = this.hiddenSmallScheduleBorder.bind(this);
     this.setSelectScheduleInfo = this.setSelectScheduleInfo.bind(this);
     this.returnStartEndTime = this.returnStartEndTime.bind(this);
+    this.calendarlistener = this.calendarlistener.bind(this);
+    this.calendarShowFilter = this.calendarShowFilter.bind(this);
   }
 
   componentWillMount() {
@@ -142,18 +145,22 @@ export class CalendarView extends Component {
   setScheduleSave(result) {
     if (result.status === 200) {
       const scheduleInfo = result.schedules;
-      const ScheduleList = [[], [], [], [], []];
+      const ScheduleList = [[], [], [], [], [], [], []];
       for (let i = 0; i < scheduleInfo.length; i++) {
         ScheduleList[0].push(scheduleInfo[i].scheduleName);
         ScheduleList[1].push(scheduleInfo[i].scheduleId);
         ScheduleList[2].push(scheduleInfo[i].startTime);
         ScheduleList[3].push(scheduleInfo[i].endTime);
         ScheduleList[4].push(this.findCalendarColor(scheduleInfo[i].calendarId, this.state.calendars));
+        ScheduleList[5].push(scheduleInfo[i].calendarId);
+        ScheduleList[6].push(false);
       }
       this.setState({
         ScheduleList,
       }, () => {
-        this.setThisMonthSchedule();
+        document.addEventListener('click', (e) => {
+          this.calendarlistener(e);
+        });
       });
     } else {
       // eslint-disable-next-line no-alert
@@ -162,27 +169,28 @@ export class CalendarView extends Component {
   }
 
   setThisMonthSchedule() {
-    if (this.state.ScheduleList !== undefined && this.state.ScheduleList[0][0] !== undefined) {
+    const tmpSchedulesList = [[], [], [], [], []];
+    if (this.state.calendarFilter !== undefined && this.state.calendarFilter[0][0] !== undefined) {
       const thisMonthSchedule = [[], [], [], [], []];
       // get this month schedule
-      for (let i = 0; i < this.state.ScheduleList[0].length; i++) {
-        const tmpDate = new Date(this.state.ScheduleList[2][i]);
-        const tmpEndDate = new Date(this.state.ScheduleList[3][i]);
+      for (let i = 0; i < this.state.calendarFilter[0].length; i++) {
+        const tmpDate = new Date(this.state.calendarFilter[2][i]);
+        const tmpEndDate = new Date(this.state.calendarFilter[3][i]);
         const nowDate = new Date(this.state.nowYear, this.state.nowMonth + 1, 0).getDate();
         const condi1 = moment(tmpEndDate).diff(
           // eslint-disable-next-line quote-props
-          moment().set({ 'year': this.state.nowYear, 'month': this.state.nowMonth, 'date': 1, 'hour': 7, 'minute': 59, 'second': 59 }), 'days'
+          moment().set({ 'year': this.state.nowYear, 'month': this.state.nowMonth, 'date': 1 }).startOf('day'), 'days'
         );
         const condi2 = moment(tmpDate).diff(
           // eslint-disable-next-line quote-props
-          moment().set({ 'year': this.state.nowYear, 'month': this.state.nowMonth, 'date': nowDate, 'hour': 7, 'minute': 59, 'second': 59 }), 'days'
+          moment().set({ 'year': this.state.nowYear, 'month': this.state.nowMonth, 'date': nowDate }).startOf('day'), 'days'
         );
         if (!(condi1 < 0 || condi2 > 0)) {
-          thisMonthSchedule[0].push(this.state.ScheduleList[0][i]);
-          thisMonthSchedule[1].push(this.state.ScheduleList[1][i]);
-          thisMonthSchedule[2].push(moment(this.state.ScheduleList[2][i]).startOf('day').format());
-          thisMonthSchedule[3].push(moment(this.state.ScheduleList[3][i]).startOf('day').format());
-          thisMonthSchedule[4].push(this.state.ScheduleList[4][i]);
+          thisMonthSchedule[0].push(this.state.calendarFilter[0][i]);
+          thisMonthSchedule[1].push(this.state.calendarFilter[1][i]);
+          thisMonthSchedule[2].push(moment(this.state.calendarFilter[2][i]).startOf('day').format());
+          thisMonthSchedule[3].push(moment(this.state.calendarFilter[3][i]).startOf('day').format());
+          thisMonthSchedule[4].push(this.state.calendarFilter[4][i]);
         }
       }
       // order by endTime - startTime
@@ -210,7 +218,6 @@ export class CalendarView extends Component {
           }
         }
       }
-      const tmpSchedulesList = [[], [], [], [], []];
       for (let i = 0; i < scheduleOrder.length; i++) {
         tmpSchedulesList[0].push(thisMonthSchedule[0][scheduleOrder[i].num]);
         tmpSchedulesList[1].push(thisMonthSchedule[1][scheduleOrder[i].num]);
@@ -218,15 +225,57 @@ export class CalendarView extends Component {
         tmpSchedulesList[3].push(thisMonthSchedule[3][scheduleOrder[i].num]);
         tmpSchedulesList[4].push(thisMonthSchedule[4][scheduleOrder[i].num]);
       }
-      this.setState({
-        thisMonthSchedule: tmpSchedulesList,
-      });
     }
+    this.setState({
+      thisMonthSchedule: tmpSchedulesList,
+    });
   }
 
   setSelectScheduleInfo(selectScheduleInfo) {
     this.setState({
       selectScheduleInfo,
+    });
+  }
+
+  findCalendar(calendarId, calendarStatus) {
+    const ScheduleList = this.state.ScheduleList;
+    for (let i = 0; i < ScheduleList[0][0].length; i++) {
+      if (ScheduleList[5][i] === calendarId) {
+        ScheduleList[6][i] = calendarStatus;
+      }
+    }
+    this.setState({
+      ScheduleList,
+    }, () => {
+      this.calendarShowFilter();
+    });
+  }
+
+  calendarlistener(e) {
+    if (e.target.nodeName === 'INPUT') {
+      const calendarId = e.target.getAttribute('id').split('newCheckbox')[1];
+      const calendarStatus = e.target.checked;
+      this.findCalendar(calendarId, calendarStatus);
+    }
+  }
+
+  calendarShowFilter() {
+    const calendarFilter = [[], [], [], [], []];
+    let counter = 0;
+    for (let i = 0; i < this.state.ScheduleList[0][0].length; i++) {
+      if (this.state.ScheduleList[6][i]) {
+        calendarFilter[0][counter] = this.state.ScheduleList[0][i];
+        calendarFilter[1][counter] = this.state.ScheduleList[1][i];
+        calendarFilter[2][counter] = this.state.ScheduleList[2][i];
+        calendarFilter[3][counter] = this.state.ScheduleList[3][i];
+        calendarFilter[4][counter] = this.state.ScheduleList[4][i];
+        counter++;
+      }
+    }
+    this.setState({
+      calendarFilter,
+    }, () => {
+      this.setThisMonthSchedule();
     });
   }
 
@@ -488,7 +537,7 @@ export class CalendarView extends Component {
     if (result.status === 200) {
       this.scheduleQuit();
       this.setState({
-        ScheduleList: [[], [], [], [], []],
+        ScheduleList: [[], [], [], [], [], [], []],
         thisMonthSchedule: [[], [], [], [], []],
       });
       this.requestScheduleList();
@@ -564,7 +613,7 @@ export class CalendarView extends Component {
       document.getElementById('ScheduleSmallBoardBorder').style.display = 'none';
       document.getElementById('deleteScheduleRemind').style.display = 'none';
       this.setState({
-        ScheduleList: [[], [], [], [], []],
+        ScheduleList: [[], [], [], [], [], [], []],
         thisMonthSchedule: [[], [], [], [], []],
       });
       this.requestScheduleList();

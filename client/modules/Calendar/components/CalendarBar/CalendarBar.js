@@ -32,12 +32,29 @@ export class CalendarBar extends Component {
     document.getElementById('calendarMain').removeEventListener('click', this.hiddenParentColorEdit, false);
   }
 
+  findCalendar(calendarId, calendarsShowList) {
+    for (let i = 0; i < calendarsShowList.length; i++) {
+      if (calendarsShowList[i].calendarId === calendarId) {
+        return i;
+      }
+    }
+    return false;
+  }
+
   calendarSelect() {
+    let calendarsShowList = JSON.parse(localStorage.getItem('calendarsShowList'));
+    const calendarIndex = this.findCalendar(this.props.calendarId, calendarsShowList);
+    if (calendarIndex !== false) {
+      calendarsShowList[calendarIndex].calendarStatus = !this.state.onChecked;
+    }
     if (this.state.onChecked) {
       this.setState({ onChecked: false });
     } else {
       this.setState({ onChecked: true });
     }
+    calendarsShowList = JSON.stringify(calendarsShowList);
+    localStorage.removeItem('calendarsShowList');
+    localStorage.setItem('calendarsShowList', calendarsShowList);
   }
 
   showEditColor(event) {
