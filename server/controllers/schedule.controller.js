@@ -213,7 +213,6 @@ export function deleteSchedule(req, res) {
     });
     return;
   }
-  // TODO: delete related comments
   Schedule.deleteOne({
     creatorId: req.session.userId,
     scheduleId: req.body.scheduleId,

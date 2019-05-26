@@ -130,7 +130,6 @@ export function editCalendar(req, res) {
   });
 }
 
-// TODO: delete related schedules
 export function deleteCalendar(req, res) {
   if (!req.body.calendarId) {
     res.status(400).send({
