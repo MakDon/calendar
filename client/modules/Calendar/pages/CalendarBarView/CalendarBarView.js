@@ -110,7 +110,7 @@ export class CalendarBarView extends Component {
         });
         calendarsShowList.push({
           calendarId: calendarList[i].calendarId,
-          calendarStatus: false,
+          calendarStatus: true,
         });
         tmpCalendarList.push(<CalendarBar
           calendarId={calendarList[i].calendarId} color={calendarList[i].color}
