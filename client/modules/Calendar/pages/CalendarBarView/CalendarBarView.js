@@ -15,6 +15,8 @@ export class CalendarBarView extends Component {
       CalendarList: [],
       nowTime: '',
       checkedLabel: 1,
+      selectCalendarId: '',
+      selectCalendarName: '',
       calendarNum: 1,
       modifyColor: 1,
       calendarListCache: [],
@@ -25,6 +27,8 @@ export class CalendarBarView extends Component {
     this.deleteCalendarChange = this.deleteCalendarChange.bind(this);
     this.enterDeleteCalendar = this.enterDeleteCalendar.bind(this);
     this.afterRequestCalendarList = this.afterRequestCalendarList.bind(this);
+    this.calendarColorSelect = this.calendarColorSelect.bind(this);
+    this.afterEditCalendar = this.afterEditCalendar.bind(this);
   }
 
   componentDidMount() {
@@ -59,26 +63,29 @@ export class CalendarBarView extends Component {
     document.getElementById('smallCalendarColorEdit').style.display = 'none';
   }
 
-  showSmallEditColor(colorNum) {
+  showSmallEditColor(name, colorNum, calendarId) {
     document.getElementById('smallCalendarColorEdit').style.display = 'block';
     document.getElementById(`editCheckbox${this.state.checkedLabel}`).checked = false;
     document.getElementById(`editCheckbox${colorNum}`).checked = true;
     this.setState({
       checkedLabel: colorNum,
+      selectCalendarId: calendarId,
+      selectCalendarName: name,
     });
   }
 
   calendarColorSelect(i) {
-    document.getElementById(`editCheckbox${this.state.checkedLabel}`).checked = false;
-    this.setState({
-      checkedLabel: i,
-      modifyColor: i,
-    });
+    if (i !== this.state.checkedLabel) {
+      document.getElementById(`editCheckbox${this.state.checkedLabel}`).checked = false;
+      this.setState({
+        checkedLabel: i,
+      });
+      this.requestEditCalendar(this.state.selectCalendarName, i, this.state.selectCalendarId);
+    }
   }
 
   requestCalendarBar() {
     const requestUrl = configUrl.calendarList;
-
     const data = {
       method: 'POST',
       headers: {
@@ -92,7 +99,7 @@ export class CalendarBarView extends Component {
   afterRequestCalendarList(result) {
     if (result.status === 200) {
       const calendarList = result.calendars;
-      const tmpCalendarList = this.state.CalendarList;
+      const tmpCalendarList = [];
       const calendars = [];
       let calendarsShowList = [];
       for (let i = 0; i < calendarList.length; i++) {
@@ -109,7 +116,7 @@ export class CalendarBarView extends Component {
           calendarId={calendarList[i].calendarId} color={calendarList[i].color}
           creatorId={calendarList[i].creatorId} dateCreated={calendarList[i].dateCreated} deleteFlag={calendarList[i].deleteFlag}
           name={calendarList[i].name} teamId={calendarList[i].teamId} key={`calendarBar${i}`} keyNum={i} setCalendarNum={(calendarNum) => { this.setCalendarNum(calendarNum); }}
-          modifyColor={(this.state.calendarNum === i) ? this.state.modifyColor : ''} showSmallEditColor={(color) => { this.showSmallEditColor(color); }}
+          modifyColor={(this.state.calendarNum === i) ? this.state.modifyColor : ''} showSmallEditColor={(name, color, calendarId) => { this.showSmallEditColor(name, color, calendarId); }}
           setSmallEditColor={(top, left) => { this.setSmallEditColor(top, left); }} hiddenSmallEditColor={() => { this.hiddenSmallEditColor(); }}
         />);
       }
@@ -136,6 +143,38 @@ export class CalendarBarView extends Component {
     }
   }
 
+  requestEditCalendar(name, color, calendarId) {
+    const requestUrl = configUrl.calendarEdit;
+    const data = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name,
+        color,
+        calendarId,
+      }),
+    };
+    requestApi(requestUrl, data, this.afterEditCalendar);
+  }
+
+  afterEditCalendar(result) {
+    if (result.status === 200) {
+      this.setState({
+        CalendarList: [],
+        selectCalendarId: '',
+        selectCalendarName: '',
+        calendarNum: 1,
+        modifyColor: 1,
+        calendarListCache: [],
+      });
+      this.requestCalendarBar();
+    } else {
+      // eslint-disable-next-line no-alert
+      alert(messages.CalendarEditFailed);
+    }
+  }
 
   addCalendarChange() {
     browserHistory.push(`addCalendarBar/${this.state.nowTime}`);
