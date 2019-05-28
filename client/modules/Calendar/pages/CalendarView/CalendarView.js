@@ -277,26 +277,10 @@ export class CalendarView extends Component {
     this.calendarListener(e);
   };
 
-  findCalendar(calendarId, calendarStatus) {
-    const ScheduleList = this.state.ScheduleList;
-    for (let i = 0; i < ScheduleList[0].length; i++) {
-      if (ScheduleList[5][i] === calendarId) {
-        ScheduleList[6][i] = calendarStatus;
-      }
-    }
-    this.setState({
-      ScheduleList,
-    }, () => {
-      this.calendarShowFilter();
-    });
-  }
-
   calendarListener(e) {
     const calendarCheck = e.target.getAttribute('id');
     if (e.target.nodeName === 'INPUT' && calendarCheck !== null && calendarCheck.indexOf('newCheckbox') !== -1) {
-      const calendarId = e.target.getAttribute('id').split('newCheckbox')[1];
-      const calendarStatus = e.target.checked;
-      this.findCalendar(calendarId, calendarStatus);
+      this.setCalendarShowFilter();
     }
   }
 
