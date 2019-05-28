@@ -2,9 +2,10 @@
 
 ![Version][version-badge] [![Build Status][travis-badge]][travis-link] [![Coverage Status][coverage-badge]][coverage-link]
 
-A teamwork calendar subsystem based on MERN. DO NOT use in production.  
+A team calendar subsystem based on MERN.    
 The front end is made by [@yuchenzhou](https://github.com/yuchenzhou)
 
+translation: [中文版本](https://github.com/MakDon/calendar/blob/master/README-CN.md)
 ## Dependencies
 
 Node  
@@ -34,16 +35,17 @@ Then start the server in production mode:
 
 ## Testing
 
-The interface testing code is written in Python. With python installed, just simply run  
+The interface testing code is written in Python. With Python installed, just simply run  
 `npm run test`  
-The calendar would run in test mode, with MongoDB connected but without adaptors.
+The calendar would run in test mode, with MongoDB connected but without adaptors. The coverage would be shown after test success. 
+
 
 ## License
 
 MIT license.  
 
 WARNING: The GUI style is learned from [Tower](https://tower.im/).   
-Do not use in production to avoid legal consequences
+Do not use in business to avoid legal consequences
 
 [travis-badge]:    https://travis-ci.com/MakDon/calendar.svg?branch=master
 [travis-link]:     https://travis-ci.com/MakDon/calendar
