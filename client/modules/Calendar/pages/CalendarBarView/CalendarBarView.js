@@ -113,6 +113,16 @@ export class CalendarBarView extends Component {
           setSmallEditColor={(top, left) => { this.setSmallEditColor(top, left); }} hiddenSmallEditColor={() => { this.hiddenSmallEditColor(); }}
         />);
       }
+      if (localStorage.getItem('calendarsShowList') !== null) {
+        const calendarsStatusList = JSON.parse(localStorage.getItem('calendarsShowList'));
+        for (let i = 0; i < calendarsShowList.length; i++) {
+          for (let j = 0; j < calendarsStatusList.length; j++) {
+            if (calendarsShowList[i].calendarId === calendarsStatusList[j].calendarId) {
+              calendarsShowList[i].calendarStatus = calendarsStatusList[j].calendarStatus;
+            }
+          }
+        }
+      }
       calendarsShowList = JSON.stringify(calendarsShowList);
       localStorage.setItem('calendarsShowList', calendarsShowList);
       this.props.setCalendars(calendars);

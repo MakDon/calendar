@@ -72,12 +72,14 @@ export class CalendarView extends Component {
     this.hiddenSmallScheduleBorder = this.hiddenSmallScheduleBorder.bind(this);
     this.setSelectScheduleInfo = this.setSelectScheduleInfo.bind(this);
     this.returnStartEndTime = this.returnStartEndTime.bind(this);
-    this.calendarlistener = this.calendarlistener.bind(this);
+    this.calendarListener = this.calendarListener.bind(this);
     this.calendarShowFilter = this.calendarShowFilter.bind(this);
+    this.setCalendarShowFilter = this.setCalendarShowFilter.bind(this);
   }
 
   componentWillMount() {
     this.initYearMonthDate();
+    document.addEventListener('click', this.calendarAddHandle, false);
     // console.log(this.state.nowMonth)
   }
 
@@ -101,12 +103,14 @@ export class CalendarView extends Component {
         ifLogin: true,
       });
     }
-    if (newprops.calendars.length > 0) {
+    if (newprops.calendars.length > 0 || (newprops.calendars.length === 0 && this.state.calendars.length > 0)) {
       const calendarNames = [];
       const calendarIds = [];
-      for (let i = 0; i < newprops.calendars.length; i++) {
-        calendarNames.push(newprops.calendars[i].calendarName);
-        calendarIds.push(newprops.calendars[i].calendarId);
+      if (newprops.calendars.length > 0) {
+        for (let i = 0; i < newprops.calendars.length; i++) {
+          calendarNames.push(newprops.calendars[i].calendarName);
+          calendarIds.push(newprops.calendars[i].calendarId);
+        }
       }
       this.setState({
         calendars: newprops.calendars,
@@ -117,6 +121,10 @@ export class CalendarView extends Component {
         this.requestScheduleList();
       });
     }
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('click', this.calendarAddHandle, false);
   }
 
   setTextareaHeight() {
@@ -158,9 +166,7 @@ export class CalendarView extends Component {
       this.setState({
         ScheduleList,
       }, () => {
-        document.addEventListener('click', (e) => {
-          this.calendarlistener(e);
-        });
+        this.setCalendarShowFilter();
       });
     } else {
       // eslint-disable-next-line no-alert
@@ -237,9 +243,43 @@ export class CalendarView extends Component {
     });
   }
 
+  setCalendarShowFilter() {
+    const calendarFilter = [[], [], [], [], []];
+    const ScheduleList = this.state.ScheduleList;
+    let counter = 0;
+    if (localStorage.getItem('calendarsShowList') !== null && ScheduleList[0] !== undefined) {
+      const calendarsShowList = JSON.parse(localStorage.getItem('calendarsShowList'));
+      for (let i = 0; i < calendarsShowList.length; i++) {
+        for (let j = 0; j < ScheduleList[0].length; j++) {
+          if (calendarsShowList[i].calendarId === ScheduleList[5][j]) {
+            if (calendarsShowList[i].calendarStatus) {
+              calendarFilter[0][counter] = ScheduleList[0][j];
+              calendarFilter[1][counter] = ScheduleList[1][j];
+              calendarFilter[2][counter] = ScheduleList[2][j];
+              calendarFilter[3][counter] = ScheduleList[3][j];
+              calendarFilter[4][counter] = ScheduleList[4][j];
+              counter++;
+            }
+            ScheduleList[6][j] = calendarsShowList[i].calendarStatus;
+          }
+        }
+      }
+      this.setState({
+        calendarFilter,
+        ScheduleList,
+      }, () => {
+        this.setThisMonthSchedule();
+      });
+    }
+  }
+
+  calendarAddHandle = (e) => {
+    this.calendarListener(e);
+  };
+
   findCalendar(calendarId, calendarStatus) {
     const ScheduleList = this.state.ScheduleList;
-    for (let i = 0; i < ScheduleList[0][0].length; i++) {
+    for (let i = 0; i < ScheduleList[0].length; i++) {
       if (ScheduleList[5][i] === calendarId) {
         ScheduleList[6][i] = calendarStatus;
       }
@@ -251,8 +291,9 @@ export class CalendarView extends Component {
     });
   }
 
-  calendarlistener(e) {
-    if (e.target.nodeName === 'INPUT') {
+  calendarListener(e) {
+    const calendarCheck = e.target.getAttribute('id');
+    if (e.target.nodeName === 'INPUT' && calendarCheck !== null && calendarCheck.indexOf('newCheckbox') !== -1) {
       const calendarId = e.target.getAttribute('id').split('newCheckbox')[1];
       const calendarStatus = e.target.checked;
       this.findCalendar(calendarId, calendarStatus);
@@ -262,7 +303,7 @@ export class CalendarView extends Component {
   calendarShowFilter() {
     const calendarFilter = [[], [], [], [], []];
     let counter = 0;
-    for (let i = 0; i < this.state.ScheduleList[0][0].length; i++) {
+    for (let i = 0; i < this.state.ScheduleList[0].length; i++) {
       if (this.state.ScheduleList[6][i]) {
         calendarFilter[0][counter] = this.state.ScheduleList[0][i];
         calendarFilter[1][counter] = this.state.ScheduleList[1][i];
@@ -344,14 +385,14 @@ export class CalendarView extends Component {
         nowMonth: 11,
       }, () => {
         this.props.setNowYearMonth(`${this.state.nowYear}-${this.state.nowMonth + 1}`);
-        this.setThisMonthSchedule();
+        this.setCalendarShowFilter();
       });
     } else {
       this.setState({
         nowMonth: this.state.nowMonth - 1,
       }, () => {
         this.props.setNowYearMonth(`${this.state.nowYear}-${this.state.nowMonth + 1}`);
-        this.setThisMonthSchedule();
+        this.setCalendarShowFilter();
       });
     }
     // 计算上个月的月视图的第一天
@@ -388,7 +429,7 @@ export class CalendarView extends Component {
       startDate: this.calcTheStartDate(lastDate),
       showTodayButton: 0,
     }, () => {
-      this.setThisMonthSchedule();
+      this.setCalendarShowFilter();
     });
 
     this.props.setNowYearMonth(`${this.state.nowYear}-${this.state.nowMonth + 1}`);
@@ -415,14 +456,14 @@ export class CalendarView extends Component {
         nowMonth: 0,
       }, () => {
         this.props.setNowYearMonth(`${this.state.nowYear}-${this.state.nowMonth + 1}`);
-        this.setThisMonthSchedule();
+        this.setCalendarShowFilter();
       });
     } else {
       this.setState({
         nowMonth: this.state.nowMonth + 1,
       }, () => {
         this.props.setNowYearMonth(`${this.state.nowYear}-${this.state.nowMonth + 1}`);
-        this.setThisMonthSchedule();
+        this.setCalendarShowFilter();
       });
     }
     // 计算上个月的月视图的第一天
