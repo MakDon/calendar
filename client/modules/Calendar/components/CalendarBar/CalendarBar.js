@@ -19,6 +19,14 @@ export class CalendarBar extends Component {
 
   componentDidMount() {
     document.getElementById(this.props.calendarId).style.visibility = 'hidden';
+    if (localStorage.getItem('calendarsShowList') !== null) {
+      const calendarsShowList = JSON.parse(localStorage.getItem('calendarsShowList'));
+      for (let i = 0; i < calendarsShowList.length; i++) {
+        if (this.props.calendarId === calendarsShowList[i].calendarId && calendarsShowList[i].calendarStatus) {
+          this.calendarSelect();
+        }
+      }
+    }
   }
 
   componentWillReceiveProps(nextProps) {
@@ -32,12 +40,29 @@ export class CalendarBar extends Component {
     document.getElementById('calendarMain').removeEventListener('click', this.hiddenParentColorEdit, false);
   }
 
+  findCalendar(calendarId, calendarsShowList) {
+    for (let i = 0; i < calendarsShowList.length; i++) {
+      if (calendarsShowList[i].calendarId === calendarId) {
+        return i;
+      }
+    }
+    return false;
+  }
+
   calendarSelect() {
+    let calendarsShowList = JSON.parse(localStorage.getItem('calendarsShowList'));
+    const calendarIndex = this.findCalendar(this.props.calendarId, calendarsShowList);
+    if (calendarIndex !== false) {
+      calendarsShowList[calendarIndex].calendarStatus = !this.state.onChecked;
+    }
     if (this.state.onChecked) {
       this.setState({ onChecked: false });
     } else {
       this.setState({ onChecked: true });
     }
+    calendarsShowList = JSON.stringify(calendarsShowList);
+    localStorage.removeItem('calendarsShowList');
+    localStorage.setItem('calendarsShowList', calendarsShowList);
   }
 
   showEditColor(event) {
@@ -79,7 +104,7 @@ export class CalendarBar extends Component {
           onMouseOver={() => { document.getElementById(this.props.calendarId).style.visibility = 'visible'; }}
           onMouseOut={() => { document.getElementById(this.props.calendarId).style.visibility = 'hidden'; }}
         >
-          <input type="checkbox" className={styles.checkboxStyle} id={`newCheckbox${this.props.calendarId}`} />
+          <input type="checkbox" className={styles.checkboxStyle} id={`newCheckbox${this.props.calendarId}`} checked={this.state.onChecked} />
           <label
             htmlFor={`newCheckbox${this.props.calendarId}`}
             className={`${styles[this.state.calendarNameColor]} ${styles[this.state.onChecked ? `Color_${this.props.color}` : '']}`}
