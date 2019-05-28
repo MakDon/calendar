@@ -53,9 +53,8 @@ import login from './routes/login.routes';
 import serverConfig from './config';
 import glossary from './util/glossary';
 
-// Set native promises as mongoose promise
-// TODO: use bluebird and check
-mongoose.Promise = global.Promise;
+// Set bluebird promises as mongoose promise
+mongoose.Promise = require('bluebird');
 
 // MongoDB Connection
 mongoose.connect(serverConfig.mongoURL, (error) => {

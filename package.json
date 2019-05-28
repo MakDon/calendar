@@ -1,6 +1,6 @@
 {
   "name": "@makdon/calendar",
-  "version": "2.4.0",
+  "version": "0.1.1",
   "description": "Boilerplate project for building Isomorphic apps using React and Redux",
   "scripts": {
     "pretest": "cross-env BABEL_DISABLE_CACHE=1 NODE_ENV=test PORT=8000 MONGO_URL=mongodb://localhost:27017/calendar-test nyc --cache node index.js &",

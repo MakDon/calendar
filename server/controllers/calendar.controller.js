@@ -2,6 +2,7 @@ import Calendar from '../models/calendar';
 import glossary from '../util/glossary';
 import config from '../config';
 import cuid from 'cuid';
+import { delelteRelativeSchedule } from "../util/util";
 
 import sanitizeHtml from 'sanitize-html';
 
@@ -129,7 +130,6 @@ export function editCalendar(req, res) {
   });
 }
 
-// TODO: delete related schedules
 export function deleteCalendar(req, res) {
   if (!req.body.calendarId) {
     res.status(400).send({
@@ -156,4 +156,5 @@ export function deleteCalendar(req, res) {
         .send();
     }
   });
+  delelteRelativeSchedule(req.body.calendarId, () => {});
 }

@@ -163,7 +163,7 @@ export function editComment(req, res) {
 }
 */
 
-// TODO: set delete flag instead of deleting from DB
+// TODO: new feature: move to Trash by setting delete flag
 export function deleteComment(req, res) {
   if (!req.body.commentId) {
     res.status(400).send({

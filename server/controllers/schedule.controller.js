@@ -4,12 +4,27 @@ import config from '../config';
 import Calendar from '../models/calendar';
 import cuid from 'cuid';
 import sanitizeHtml from 'sanitize-html';
-import Comment from '../models/comment';
 const Promise = require('bluebird');
+import { deleteRelativeComment } from '../util/util';
 
 const language = config.language;
 
-// TODO: query by date
+/**
+ * function used to check if the user has the access to the calendar
+ */
+function checkCalendarPermission(userId, teamId, calendarId, callback) {
+  Calendar.findOne({ calendarId }).exec((err, calendar) => {
+    if (err || !calendar || calendar.teamId !== teamId) {
+      const permission = false;
+      callback(permission);
+    } else {
+      const permission = true;
+      callback(permission);
+    }
+  });
+}
+
+// TODO: new feature query by date
 export function getScheduleList(req, res) {
   let scheduleList = [];
   Calendar.find().or([{ teamId: req.session.teamId }]).exec((err, calendars) => {
@@ -139,51 +154,53 @@ export function editSchedule(req, res) {
     });
     return;
   }
-
   const newSchedule = {};
-  // TODO: check calendarId before editing.
-  if (req.body.calendarId) {
-    newSchedule.calendarId = sanitizeHtml(req.body.calendarId);
-  }
-  if (req.body.scheduleName) {
-    newSchedule.scheduleName = req.body.scheduleName;
-  }
-  if (req.body.startTime) {
-    newSchedule.startTime = req.body.startTime;
-  }
-  if (req.body.endTime) {
-    newSchedule.endTime = req.body.endTime;
-  }
-  if (req.body.location) {
-    newSchedule.location = req.body.location;
-  }
-  if (req.body.isWholeDay) {
-    newSchedule.isWholeDay = sanitizeHtml(req.body.isWholeDay);
-  }
-  if (req.body.members) {
-    newSchedule.members = req.body.members;
-  }
-  // TODO: 修改记录
-  Schedule.findOneAndUpdate({ scheduleId: req.body.scheduleId, creatorId: req.session.userId }, newSchedule, (err, foundSchedule) => {
-    if (err) {
-      res.status(500)
-        .send({
-          status: 500,
-          msg: glossary.internalError[language],
-        });
-    } else {
-      if (Array.isArray(foundSchedule) && foundSchedule.length === 0 || !foundSchedule) {
-        res.status(404).send({
-          status: 404,
-          msg: glossary.notFound[language],
-        });
-      } else {
-        res.json({
-          status: 200,
-          msg: glossary.success[language],
-        });
-        res.send();
+  newSchedule.calendarId = sanitizeHtml(req.body.calendarId || '');
+  checkCalendarPermission(req.session.userId, req.session.teamId, newSchedule.calendarId, (permission) => {
+    if (permission || !newSchedule.calendarId) {
+      if (req.body.scheduleName) {
+        newSchedule.scheduleName = req.body.scheduleName;
       }
+      if (req.body.startTime) {
+        newSchedule.startTime = req.body.startTime;
+      }
+      if (req.body.endTime) {
+        newSchedule.endTime = req.body.endTime;
+      }
+      if (req.body.location) {
+        newSchedule.location = req.body.location;
+      }
+      if (req.body.isWholeDay) {
+        newSchedule.isWholeDay = sanitizeHtml(req.body.isWholeDay);
+      }
+      if (req.body.members) {
+        newSchedule.members = req.body.members;
+      }
+      // TODO: new feature, record edit history
+      Schedule.findOneAndUpdate({ scheduleId: req.body.scheduleId, creatorId: req.session.userId }, newSchedule, (err, foundSchedule) => {
+        if (err) {
+          res.status(500)
+            .send({
+              status: 500,
+              msg: glossary.internalError[language],
+            });
+        } else {
+          if (Array.isArray(foundSchedule) && foundSchedule.length === 0 || !foundSchedule) {
+            res.status(404).send({
+              status: 404,
+              msg: glossary.notFound[language],
+            });
+          } else {
+            res.json({
+              status: 200,
+              msg: glossary.success[language],
+            });
+            res.send();
+          }
+        }
+      });
+    } else {
+      res.status(403).send({ status: 403, msg: glossary.notLoginMSG[language] });
     }
   });
 }
@@ -196,7 +213,6 @@ export function deleteSchedule(req, res) {
     });
     return;
   }
-  // TODO: delete related comments
   Schedule.deleteOne({
     creatorId: req.session.userId,
     scheduleId: req.body.scheduleId,
@@ -207,7 +223,7 @@ export function deleteSchedule(req, res) {
         msg: glossary.notFound[language],
       });
     } else {
-      Comment.deleteMany({ scheduleId: req.body.scheduleId }, (err) => {
+      deleteRelativeComment(req.body.scheduleId, (err) => {
         if (err) {
           res.status(500).send({
             status: 500,

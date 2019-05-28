@@ -95,6 +95,9 @@ export class EditSchedule extends Component {
           this.findSelectName(this.state.scheduleInfo.members);
         }
       });
+    } else {
+      // eslint-disable-next-line no-alert
+      alert(messages.ScheduleLoadFailed);
     }
   }
 
@@ -106,6 +109,9 @@ export class EditSchedule extends Component {
         this.state.calendarNames[1].push(calendars[i].calendarId);
       }
       this.setMemberInfo();
+    } else {
+      // eslint-disable-next-line no-alert
+      alert(messages.CalendarNameLoadFailed);
     }
   }
 
@@ -233,6 +239,9 @@ export class EditSchedule extends Component {
   ScheduleEditSave(result) {
     if (result.status === 200) {
       browserHistory.push('/');
+    } else {
+      // eslint-disable-next-line no-alert
+      alert(messages.ScheduleEditFailed);
     }
   }
 

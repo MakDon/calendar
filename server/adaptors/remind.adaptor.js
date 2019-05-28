@@ -15,5 +15,8 @@ export function remind(target, scheduleId, source, callback) {
     callback(error);
   } else {
     // implement your own adaptor here
+    const error = '';
+    callback(error);
+    console.log('WARNING: remind adaptor is not implement yet'); // eslint-disable-line no-console
   }
 }

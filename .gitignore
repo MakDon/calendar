@@ -74,7 +74,6 @@ dist
 coverage/
 .nyc_output/
 yarn.lock
-package-lock.json
 
 # for the parent system thw author use:
 IHCI.adaptor.js

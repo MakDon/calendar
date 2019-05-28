@@ -15,6 +15,8 @@ export class CalendarBarView extends Component {
       CalendarList: [],
       nowTime: '',
       checkedLabel: 1,
+      selectCalendarId: '',
+      selectCalendarName: '',
       calendarNum: 1,
       modifyColor: 1,
       calendarListCache: [],
@@ -25,6 +27,8 @@ export class CalendarBarView extends Component {
     this.deleteCalendarChange = this.deleteCalendarChange.bind(this);
     this.enterDeleteCalendar = this.enterDeleteCalendar.bind(this);
     this.afterRequestCalendarList = this.afterRequestCalendarList.bind(this);
+    this.calendarColorSelect = this.calendarColorSelect.bind(this);
+    this.afterEditCalendar = this.afterEditCalendar.bind(this);
   }
 
   componentDidMount() {
@@ -59,26 +63,29 @@ export class CalendarBarView extends Component {
     document.getElementById('smallCalendarColorEdit').style.display = 'none';
   }
 
-  showSmallEditColor(colorNum) {
+  showSmallEditColor(name, colorNum, calendarId) {
     document.getElementById('smallCalendarColorEdit').style.display = 'block';
     document.getElementById(`editCheckbox${this.state.checkedLabel}`).checked = false;
     document.getElementById(`editCheckbox${colorNum}`).checked = true;
     this.setState({
       checkedLabel: colorNum,
+      selectCalendarId: calendarId,
+      selectCalendarName: name,
     });
   }
 
   calendarColorSelect(i) {
-    document.getElementById(`editCheckbox${this.state.checkedLabel}`).checked = false;
-    this.setState({
-      checkedLabel: i,
-      modifyColor: i,
-    });
+    if (i !== this.state.checkedLabel) {
+      document.getElementById(`editCheckbox${this.state.checkedLabel}`).checked = false;
+      this.setState({
+        checkedLabel: i,
+      });
+      this.requestEditCalendar(this.state.selectCalendarName, i, this.state.selectCalendarId);
+    }
   }
 
   requestCalendarBar() {
     const requestUrl = configUrl.calendarList;
-
     const data = {
       method: 'POST',
       headers: {
@@ -92,30 +99,82 @@ export class CalendarBarView extends Component {
   afterRequestCalendarList(result) {
     if (result.status === 200) {
       const calendarList = result.calendars;
-      const tmpCalendarList = this.state.CalendarList;
+      const tmpCalendarList = [];
       const calendars = [];
+      let calendarsShowList = [];
       for (let i = 0; i < calendarList.length; i++) {
         calendars.push({
           calendarName: calendarList[i].name,
           calendarId: calendarList[i].calendarId,
           calendarColor: calendarList[i].color,
         });
+        calendarsShowList.push({
+          calendarId: calendarList[i].calendarId,
+          calendarStatus: true,
+        });
         tmpCalendarList.push(<CalendarBar
           calendarId={calendarList[i].calendarId} color={calendarList[i].color}
           creatorId={calendarList[i].creatorId} dateCreated={calendarList[i].dateCreated} deleteFlag={calendarList[i].deleteFlag}
           name={calendarList[i].name} teamId={calendarList[i].teamId} key={`calendarBar${i}`} keyNum={i} setCalendarNum={(calendarNum) => { this.setCalendarNum(calendarNum); }}
-          modifyColor={(this.state.calendarNum === i) ? this.state.modifyColor : ''} showSmallEditColor={(color) => { this.showSmallEditColor(color); }}
+          modifyColor={(this.state.calendarNum === i) ? this.state.modifyColor : ''} showSmallEditColor={(name, color, calendarId) => { this.showSmallEditColor(name, color, calendarId); }}
           setSmallEditColor={(top, left) => { this.setSmallEditColor(top, left); }} hiddenSmallEditColor={() => { this.hiddenSmallEditColor(); }}
         />);
       }
+      if (localStorage.getItem('calendarsShowList') !== null) {
+        const calendarsStatusList = JSON.parse(localStorage.getItem('calendarsShowList'));
+        for (let i = 0; i < calendarsShowList.length; i++) {
+          for (let j = 0; j < calendarsStatusList.length; j++) {
+            if (calendarsShowList[i].calendarId === calendarsStatusList[j].calendarId) {
+              calendarsShowList[i].calendarStatus = calendarsStatusList[j].calendarStatus;
+            }
+          }
+        }
+      }
+      calendarsShowList = JSON.stringify(calendarsShowList);
+      localStorage.setItem('calendarsShowList', calendarsShowList);
       this.props.setCalendars(calendars);
       this.setState({
         CalendarList: tmpCalendarList,
         calendarListCache: calendarList,
       });
+    } else {
+      // eslint-disable-next-line no-alert
+      alert(messages.CalendarLoadFailed);
     }
   }
 
+  requestEditCalendar(name, color, calendarId) {
+    const requestUrl = configUrl.calendarEdit;
+    const data = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name,
+        color,
+        calendarId,
+      }),
+    };
+    requestApi(requestUrl, data, this.afterEditCalendar);
+  }
+
+  afterEditCalendar(result) {
+    if (result.status === 200) {
+      this.setState({
+        CalendarList: [],
+        selectCalendarId: '',
+        selectCalendarName: '',
+        calendarNum: 1,
+        modifyColor: 1,
+        calendarListCache: [],
+      });
+      this.requestCalendarBar();
+    } else {
+      // eslint-disable-next-line no-alert
+      alert(messages.CalendarEditFailed);
+    }
+  }
 
   addCalendarChange() {
     browserHistory.push(`addCalendarBar/${this.state.nowTime}`);
@@ -131,15 +190,19 @@ export class CalendarBarView extends Component {
     this.showDeleteCalendarRemind();
   }
 
-  printResult() {
-    document.getElementById('deleteCalendarRemind').style.display = 'none';
-    document.getElementById('smallCalendarColorEdit').style.display = 'none';
-    this.setState({
-      CalendarList: [],
-    }, () => {
-      this.requestCalendarBar();
-    });
-    // console.log(result);
+  printResult(result) {
+    if (result.status === 200) {
+      document.getElementById('deleteCalendarRemind').style.display = 'none';
+      document.getElementById('smallCalendarColorEdit').style.display = 'none';
+      this.setState({
+        CalendarList: [],
+      }, () => {
+        this.requestCalendarBar();
+      });
+    } else {
+      // eslint-disable-next-line no-alert
+      alert(messages.CalendarDeleteFailed);
+    }
   }
 
   enterDeleteCalendar() {

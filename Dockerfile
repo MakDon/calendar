@@ -11,7 +11,6 @@ COPY .babelrc index.js nodemon.json webpack.config.babel.js webpack.config.dev.j
 COPY client ./client
 COPY Intl ./Intl
 COPY server ./server
-COPY config ./config
 CMD ["npm", "start"]
 
 FROM development as build
@@ -24,4 +23,7 @@ COPY package.json package-lock.json ./
 RUN npm install --production
 COPY index.js ./
 COPY --from=build /usr/src/app/dist ./dist
-CMD ["npm", "run", "start:prod"]
+ADD https://github.com/ufoscout/docker-compose-wait/releases/download/2.2.1/wait /wait
+RUN chmod +x /wait
+
+CMD ["sh", "-c", "/wait && npm run start:prod"]

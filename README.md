@@ -1,13 +1,13 @@
-# calendar_on_MERN \[WIP]
+# Team Calendar
 
 ![Version][version-badge] [![Build Status][travis-badge]][travis-link] [![Coverage Status][coverage-badge]][coverage-link]
 
-A teamwork calendar based on MERN for learning. DO NOT use in production.  
+A teamwork calendar subsystem based on MERN. DO NOT use in production.  
 The front end is made by [@yuchenzhou](https://github.com/yuchenzhou)
 
 ## Dependencies
 
-node  
+Node  
 MongoDB
 
 
@@ -24,8 +24,10 @@ The calendar would run in development mode. Visit `127.0.0.1:8000` to experience
 
 ## Deploy
 
-As for the backend, simply implement the adaptors in server/adaptor.  
-As for the front end, include the page with an iframe, and call postMessage to send in the user ticket and teamId after the iframe loaded.
+The user info, team info are fetched from your platform. You can plug this into your system in the following way:
+
+- As for the backend, simply implement the adaptors in server/adaptor.  
+- As for the front end, include the page with an iframe, and call postMessage to send in the user ticket and teamId after the iframe loaded.
 
 Then start the server in production mode:  
 `npm run bs`
@@ -45,6 +47,6 @@ Do not use in production to avoid legal consequences
 
 [travis-badge]:    https://travis-ci.com/MakDon/calendar.svg?branch=master
 [travis-link]:     https://travis-ci.com/MakDon/calendar
-[version-badge]:   https://img.shields.io/badge/version-0.1.0-blue.svg
+[version-badge]:   https://img.shields.io/badge/version-0.1.1-blue.svg
 [coverage-badge]:  https://coveralls.io/repos/github/MakDon/calendar/badge.svg?branch=master
 [coverage-link]:   https://coveralls.io/github/MakDon/calendar?branch=master
