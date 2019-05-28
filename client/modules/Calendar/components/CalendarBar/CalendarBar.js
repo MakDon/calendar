@@ -67,7 +67,7 @@ export class CalendarBar extends Component {
 
   showEditColor(event) {
     this.stopPropagation(event);
-    this.props.showSmallEditColor(this.props.color);
+    this.props.showSmallEditColor(this.props.name, this.props.color, this.props.calendarId);
     this.props.setCalendarNum(this.props.keyNum);
     const setting = document.getElementById(this.props.calendarId);
     const left = setting.offsetParent.offsetLeft + setting.offsetLeft - 216;
