@@ -3,7 +3,6 @@ import styles from './Calendar.css';
 import CalendarView from './pages/CalendarView/CalendarView';
 import CalendarBarView from './pages/CalendarBarView/CalendarBarView';
 import configUrl from '../../config/config';
-import { iframeUrlTest } from '../../config/config';
 import { requestApi } from '../../util/apiCaller';
 import messages from '../../config/glossary';
 
@@ -22,7 +21,6 @@ export class Calendar extends Component {
   componentDidMount() {
     let ticket = '';
     let teamId = '';
-    document.domain = 'localhost';
     if (process.env.NODE_ENV === 'development') {
       if (ticket === '' && teamId === '') {
         ticket = 'ThisIsTestTicket';
