@@ -58,6 +58,7 @@ export class DetailSchedule extends Component {
     this.requestScheduleEdit = this.requestScheduleEdit.bind(this);
     this.findSelectName = this.findSelectName.bind(this);
     this.afterEditSchedule = this.afterEditSchedule.bind(this);
+    this.afterScheduleDelete = this.afterScheduleDelete.bind(this);
   }
 
   // TODO： 发表评论时清除之前的草稿
@@ -287,7 +288,7 @@ export class DetailSchedule extends Component {
 
   afterScheduleDelete(result) {
     if (result.status === 200) {
-      browserHistory.push('/');
+      this.skipToIndex();
     } else {
       // eslint-disable-next-line no-alert
       alert(messages.CommentDeleteFailed);
@@ -299,6 +300,10 @@ export class DetailSchedule extends Component {
   }
 
   skipToIndex() {
+    const calendarNewLogin = sessionStorage.getItem('calendarNewLogin');
+    if(calendarNewLogin !== null){
+      sessionStorage.setItem('calendarNewLogin', 'false');
+    }
     browserHistory.push('/');
   }
 

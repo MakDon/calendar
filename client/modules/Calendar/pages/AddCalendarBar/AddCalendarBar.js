@@ -65,6 +65,10 @@ export class AddCalendarBar extends Component {
   }
 
   skipToIndex() {
+    const calendarNewLogin = sessionStorage.getItem('calendarNewLogin');
+    if(calendarNewLogin !== null){
+      sessionStorage.setItem('calendarNewLogin', 'false');
+    }
     browserHistory.push('/');
   }
 
@@ -97,7 +101,7 @@ export class AddCalendarBar extends Component {
             </div>
             <div>
               <button className={styles.newCalendarSave} onClick={this.saveCalendar}>{messages.save}</button>
-              <button className={styles.newCalendarQuit} onClick={() => { browserHistory.push('/'); }}>{messages.quit}</button>
+              <button className={styles.newCalendarQuit} onClick={this.skipToIndex}>{messages.quit}</button>
             </div>
           </div>
         </div>

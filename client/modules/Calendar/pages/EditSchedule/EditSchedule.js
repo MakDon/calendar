@@ -238,7 +238,7 @@ export class EditSchedule extends Component {
 
   ScheduleEditSave(result) {
     if (result.status === 200) {
-      browserHistory.push('/');
+      this.ScheduleEditQuit();
     } else {
       // eslint-disable-next-line no-alert
       alert(messages.ScheduleEditFailed);
@@ -246,6 +246,10 @@ export class EditSchedule extends Component {
   }
 
   ScheduleEditQuit() {
+    const calendarNewLogin = sessionStorage.getItem('calendarNewLogin');
+    if(calendarNewLogin !== null){
+      sessionStorage.setItem('calendarNewLogin', 'false');
+    }
     browserHistory.push('/');
   }
 

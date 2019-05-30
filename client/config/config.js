@@ -1,9 +1,7 @@
 
 // const testUrl = 'https://8501bddf-2114-4e75-a488-7d79046c3f8a.mock.pstmn.io';
 const url = '';
-const iframeUrl = 'http://39.108.68.159:5000';
 const configUrl = {
-  iframeParent: `${iframeUrl}/calendar`,
   calendarLogin: `${url}/api/calendar/login`,
   calendarList: `${url}/api/calendar/list`,
   calendarAdd: `${url}/api/calendar/add`,
