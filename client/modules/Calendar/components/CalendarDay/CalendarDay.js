@@ -258,7 +258,6 @@ export class CalendarDay extends Component {
       nowDate         获取当前月的天数
       lastDate        获取当前月的上个月天数
       itemsDays         当前月的一周
-      nowMonthCount       本月计数器
       nextMonthCount      下个月的计数
       this.props.rowKey     从组件中获取的rowKey值->第几周
       this.props.day      从组件获取一周开头的第一天
@@ -268,7 +267,6 @@ export class CalendarDay extends Component {
     const lastDate = new Date(this.props.nowYear, this.props.nowMonth, 0).getDate();
     let itemsDays = [];
     let itemWeeks = [];
-    let nowMonthCount = 1;
     if (this.state.separateScheduleList.length !== 0) {
       for (let i = 1; i <= nowDate; i++) {
         this.state.dayScheduleNum[i] = 0;
@@ -340,17 +338,16 @@ export class CalendarDay extends Component {
           } else {
             // 当月视图第一周第i天的日期大于上个月最后一天时，重置时间为1号
             itemsDays.push(
-              <div className={styles.Day} key={`day${nowMonthCount}`} onClick={() => { this.createNewSchedule(this.props.rowKey, i, i); }}>
+              <div className={styles.Day} key={`day${this.props.day + i - lastDate}`} onClick={() => { this.createNewSchedule(this.props.rowKey, i, i); }}>
                 <div className={styles.Dayinfo}>
-                  <span>{nowMonthCount}</span>
+                  <span>{this.props.day + i - lastDate}</span>
                 </div>
                 <div className="daySchedule">
-                  {(this.state.showScheduleList !== undefined) ? this.state.showScheduleList[nowMonthCount] : ''}
+                  {(this.state.showScheduleList !== undefined) ? this.state.showScheduleList[this.props.day + i - lastDate] : ''}
                 </div>
                 <div className="NewSchedule">{((this.state.clickRow === this.props.nowClickRow) && (this.state.clickCol === i)) ? this.state.NewSchedule : ''}</div>
               </div>
             );
-            nowMonthCount++;
           }
         }
         if (i === 6) {
@@ -359,7 +356,7 @@ export class CalendarDay extends Component {
           } else if (this.props.day + i <= lastDate) {
             this.state.separateNodeNum.push(this.props.day + i);
           } else {
-            this.state.separateNodeNum.push(nowMonthCount - 1);
+            this.state.separateNodeNum.push(this.props.day + i - lastDate - 1);
           }
         }
       }

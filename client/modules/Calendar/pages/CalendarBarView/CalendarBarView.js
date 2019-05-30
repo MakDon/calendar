@@ -177,7 +177,12 @@ export class CalendarBarView extends Component {
   }
 
   addCalendarChange() {
-    browserHistory.push(`addCalendarBar/${this.state.nowTime}`);
+    if (this.state.ifLogin) {
+      browserHistory.push(`addCalendarBar/${this.state.nowTime}`);
+    } else {
+      // eslint-disable-next-line no-alert
+      alert(messages.loginFailed);
+    }
   }
   editCalendarChange() {
     browserHistory.push(`editCalendarBar/${
