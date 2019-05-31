@@ -1,4 +1,4 @@
-import { getTeammateIdsIHCI } from 'IHCI.adaptor';
+import { getTeammateIdsIHCI } from './IHCI.adaptor';
 export function getTeammateIds(teamId, callback) {
   if (process.env.NODE_ENV !== 'production') {
     const error = '';

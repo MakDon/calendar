@@ -1,4 +1,4 @@
-import { getUserIdIHCI } from 'IHCI.adaptor';
+import { getUserIdIHCI } from './IHCI.adaptor';
 /**
  * fetch the userId from platform server.
  * different implement according the login server;

@@ -1,5 +1,5 @@
-import { remindIHCI } from 'IHCI.adaptor';
-export function remind(target, schedule, source, callback) {
+import { remindIHCI } from './IHCI.adaptor';
+export function remind(target, scheduleId, source, callback) {
   if (process.env.NODE_ENV !== 'production') {
     const error = '';
     // eslint-disable-next-line no-console
