@@ -27,6 +27,7 @@ export function login(req, res) {
               msg: glossary.internalError[language],
             });
         } else {
+          // TODO: check access to teamId
           // eslint-disable-next-line no-param-reassign
           req.session.userId = userId;
           // eslint-disable-next-line no-param-reassign
