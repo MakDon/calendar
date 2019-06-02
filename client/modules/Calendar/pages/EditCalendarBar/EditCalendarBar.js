@@ -14,6 +14,7 @@ export class EditCalendarBar extends Component {
     };
     this.saveCalendar = this.saveCalendar.bind(this);
     this.requestAddCalendar = this.requestAddCalendar.bind(this);
+    this.afterAddCalendar = this.afterAddCalendar.bind(this);
   }
 
   componentDidMount() {
@@ -56,7 +57,7 @@ export class EditCalendarBar extends Component {
 
   afterAddCalendar(result) {
     if (result.status === 200) {
-      browserHistory.push('/');
+      this.skipToIndexPage();
     } else {
       // eslint-disable-next-line no-alert
       alert(messages.CalendarEditFailed);
@@ -64,6 +65,10 @@ export class EditCalendarBar extends Component {
   }
 
   skipToIndexPage() {
+    const calendarNewLogin = sessionStorage.getItem('calendarNewLogin');
+    if(calendarNewLogin !== null){
+      sessionStorage.setItem('calendarNewLogin', 'false');
+    }
     browserHistory.push('/');
   }
 
@@ -99,7 +104,7 @@ export class EditCalendarBar extends Component {
             </div>
             <div>
               <button className={styles.newCalendarSave} onClick={this.saveCalendar} >{messages.save}</button>
-              <button className={styles.newCalendarQuit} onClick={() => { browserHistory.push('/'); }}>{messages.quit}</button>
+              <button className={styles.newCalendarQuit} onClick={this.skipToIndexPage}>{messages.quit}</button>
             </div>
           </div>
         </div>

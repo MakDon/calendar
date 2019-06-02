@@ -3,7 +3,7 @@
 ![Version][version-badge] [![Build Status][travis-badge]][travis-link] [![Coverage Status][coverage-badge]][coverage-link]
 
 
-基于 MERN 技术栈的团队日历子系统。  
+基于 MERN 技术栈的团队日历子系统。本项目的前端界面设计仿照 [Tower](https://tower.im/)。    
 前端作者为 [@yuchenzhou](https://github.com/yuchenzhou)。
 
 翻译：[English Version](https://github.com/MakDon/calendar/blob/master/README.md)
@@ -45,11 +45,11 @@ npm run start
 
 使用 MIT 协议。
 
-注意：本项目的前端设计仿照 [Tower](https://tower.im/)。  
+注意：本项目的前端界面设计仿照 [Tower](https://tower.im/)。  
 不建议用于商业用途以避免潜在的法律风险。
 
 [travis-badge]:    https://travis-ci.com/MakDon/calendar.svg?branch=master
 [travis-link]:     https://travis-ci.com/MakDon/calendar
-[version-badge]:   https://img.shields.io/badge/version-0.1.1-blue.svg
+[version-badge]:   https://img.shields.io/badge/version-0.1.2-blue.svg
 [coverage-badge]:  https://coveralls.io/repos/github/MakDon/calendar/badge.svg?branch=master
 [coverage-link]:   https://coveralls.io/github/MakDon/calendar?branch=master

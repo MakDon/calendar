@@ -167,7 +167,7 @@ export function editSchedule(req, res) {
       if (req.body.endTime) {
         newSchedule.endTime = req.body.endTime;
       }
-      if (req.body.location) {
+      if ('location' in req.body) {
         newSchedule.location = req.body.location;
       }
       if (req.body.isWholeDay) {

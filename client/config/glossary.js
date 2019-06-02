@@ -30,6 +30,7 @@ const messages = {
   checkDetail: '查看详情',
   edit: '编辑',
   delete: '删除',
+  location: '地点',
   scheduleModify: '修改日程',
   scheduleMember: '日程参与人?',
   clickAddMember: '点击添加成员',

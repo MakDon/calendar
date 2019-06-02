@@ -22,6 +22,7 @@ export class DetailSchedule extends Component {
         scheduleName: '',
         startTime: '',
         endTime: '',
+        location: '',
       },
       teamMember: [],
       commentsList: [],
@@ -58,6 +59,7 @@ export class DetailSchedule extends Component {
     this.requestScheduleEdit = this.requestScheduleEdit.bind(this);
     this.findSelectName = this.findSelectName.bind(this);
     this.afterEditSchedule = this.afterEditSchedule.bind(this);
+    this.afterScheduleDelete = this.afterScheduleDelete.bind(this);
   }
 
   // TODO： 发表评论时清除之前的草稿
@@ -96,7 +98,11 @@ export class DetailSchedule extends Component {
         startTime: `${(startTime.getMonth() + 1) + messages.month + startTime.getDate() + messages.day}`,
         endTime: `${(endTime.getMonth() + 1) + messages.month + endTime.getDate() + messages.day}`,
         informMember: schedule.members,
+        location: '',
       };
+      if (schedule.location !== undefined){
+        scheduleInfo.location = schedule.location;
+      }
       this.requestCalendarInfo(schedule.calendarId);
       this.setState({
         setScheduleInfo: scheduleInfo,
@@ -287,7 +293,7 @@ export class DetailSchedule extends Component {
 
   afterScheduleDelete(result) {
     if (result.status === 200) {
-      browserHistory.push('/');
+      this.skipToIndex();
     } else {
       // eslint-disable-next-line no-alert
       alert(messages.CommentDeleteFailed);
@@ -299,6 +305,10 @@ export class DetailSchedule extends Component {
   }
 
   skipToIndex() {
+    const calendarNewLogin = sessionStorage.getItem('calendarNewLogin');
+    if(calendarNewLogin !== null){
+      sessionStorage.setItem('calendarNewLogin', 'false');
+    }
     browserHistory.push('/');
   }
 
@@ -500,6 +510,7 @@ export class DetailSchedule extends Component {
     const commentsList = [];
     const membersList = [];
     const informMember = [];
+    const scheduleLocation = [];
     const teamMemberLength = this.state.teamMember.length;
     const commentsListLength = this.state.commentsList.length;
     const informMemberLength = this.state.informMember.length;
@@ -578,6 +589,16 @@ export class DetailSchedule extends Component {
         );
       }
     }
+    console.log(this.state.setScheduleInfo.location)
+    if (this.state.setScheduleInfo.location !== ''){
+      scheduleLocation.push(
+        <div className={styles.scheduleLocation} key='locationKey'>
+          {messages.location + messages.colon}
+          <span>{this.state.setScheduleInfo.location}</span>
+        </div>
+      );
+    }
+
     // console.log(commentList)
     return (
       <div className={styles.detailScheduleBorder}>
@@ -627,6 +648,7 @@ export class DetailSchedule extends Component {
                   {`${this.state.setScheduleInfo.startTime}-${this.state.setScheduleInfo.endTime}`}
                   {/* 日程时间 */}
                 </div>
+                {scheduleLocation}
               </div>
             </div>
             <div>

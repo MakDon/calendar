@@ -3,6 +3,7 @@
 ![Version][version-badge] [![Build Status][travis-badge]][travis-link] [![Coverage Status][coverage-badge]][coverage-link]
 
 A team calendar subsystem based on MERN.    
+The GUI style is learned from [Tower](https://tower.im/)  
 The front end is made by [@yuchenzhou](https://github.com/yuchenzhou)
 
 translation: [中文版本](https://github.com/MakDon/calendar/blob/master/README-CN.md)
@@ -49,6 +50,6 @@ Do not use in business to avoid legal consequences
 
 [travis-badge]:    https://travis-ci.com/MakDon/calendar.svg?branch=master
 [travis-link]:     https://travis-ci.com/MakDon/calendar
-[version-badge]:   https://img.shields.io/badge/version-0.1.1-blue.svg
+[version-badge]:   https://img.shields.io/badge/version-0.1.2-blue.svg
 [coverage-badge]:  https://coveralls.io/repos/github/MakDon/calendar/badge.svg?branch=master
 [coverage-link]:   https://coveralls.io/github/MakDon/calendar?branch=master
