@@ -126,6 +126,14 @@
   color: #777;
 }
 
+.scheduleLocation{
+  padding: 10px 10px 0px;
+}
+
+.scheduleLocation span{
+  word-break: break-all;
+}
+
 .deleteCalendarRemind,
 .editInformMember,
 .deleteCommentRemind{
