@@ -12,8 +12,7 @@ export function sendRemind(req, res) {
     });
     return;
   }
-  getSchedule(req.body.scheduleId).then((sc) => {
-    const schedule = sc;
+  getSchedule(req.body.scheduleId).then((schedule) => {
     remind(req.body.target, schedule, req.session.userId, (err) => {
       if (err) {
         res.status(500).send({
