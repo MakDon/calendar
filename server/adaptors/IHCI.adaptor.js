@@ -27,7 +27,7 @@ export function getUserIdIHCI(ticket, callback) {
   });
 }
 
-export function remindIHCI(target, scheduleId, source, callback) {
+export function remindIHCI(target, schedule, source, callback) {
 // TODO:finish it
   const authCode = generateCode('calendar', Date.now());
   const url = 'http://www.animita.cn/api/calendar/remind';
@@ -35,7 +35,7 @@ export function remindIHCI(target, scheduleId, source, callback) {
     authCode,
     target,
     source,
-    scheduleId,
+    schedule,
   };
   request.post({ url, multipart: [{ body: JSON.stringify(data) }] }, (error, rsp, body) => {
     console.log(body);
