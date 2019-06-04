@@ -1656,10 +1656,6 @@
 							"request": {
 								"method": "GET",
 								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
 								"url": {
 									"raw": "127.0.0.1:8000",
 									"host": [
@@ -1678,10 +1674,6 @@
 							"request": {
 								"method": "GET",
 								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
 								"url": {
 									"raw": "127.0.0.1:8000/vendor.js",
 									"host": [
@@ -1703,10 +1695,6 @@
 							"request": {
 								"method": "GET",
 								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
 								"url": {
 									"raw": "127.0.0.1:8000/app.js",
 									"host": [
@@ -1741,7 +1729,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"ticket\": \"qlwrsid%3A3A611142-82AF-49BC-9424-05B5DDA0BC4F.zcbMLs%2BsLltamrgMvDbym0lW%2FHSfvYImapRBOmbEER0\", \"teamId\": \"FakeTeamId\"}"
+							"raw": "{\"ticket\": \"qlwrsid%3A3A611142-82AF-49BC-9424-05B5DDA0BC4F.zcbMLs%2BsLltamrgMvDbym0lW%2FHSfvYImapRBOmbEER0\", \"teamId\": \"ThisIsTestTeamId\"}"
 						},
 						"url": {
 							"raw": "127.0.0.1:8000/api/calendar/login",

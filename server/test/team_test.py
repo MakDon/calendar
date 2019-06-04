@@ -4,6 +4,7 @@ from .util import get_status_code_by_request
 from .util import get_login_cookie
 from .util import get_response
 from .util import get_a_calendarId
+from .util import get_a_scheduleId
 
 with open("./server/test/postman_collection.json") as json_file:
     collection = json.load(json_file)
@@ -21,5 +22,6 @@ class TestTeam(unittest.TestCase):
     def test01_remind(self):
         request_info = team_collection[1]["request"]
         cookie = get_login_cookie()
+        request_info["body"]["raw"] = request_info["body"]["raw"].replace('scheduleIdHere', get_a_scheduleId())
         res = get_response(request_info, cookie)
         self.assertEqual(res.status_code, 200)

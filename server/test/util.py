@@ -30,12 +30,13 @@ def format_headers(headers):
 
 def get_response(request, cookie=None):
     headers = format_headers(request["header"])
-    data = request["body"]["raw"]
+
     url = "http://" + request["url"]["raw"]
     if request['method'] == 'POST':
+        data = request["body"]["raw"]
         res = requests.post(url, headers=headers, data=data, cookies=cookie)
     elif request['method'] == 'GET':
-        res = requests.get(url, headers=headers, data=data, cookies=cookie)
+        res = requests.get(url, headers=headers, cookies=cookie)
     return res
 
 
@@ -75,15 +76,12 @@ def get_a_calendarId():
 
 
 def get_a_scheduleId():
-    calendar_id = get_a_calendarId()
-    if calendar_id:
-        request_info = schedule_collection[1]["request"]
-        cookie = get_login_cookie()
-        res = get_response(request_info, cookie)
-        res_data = json.loads(res.text)
-        if res_data['schedules']:
-            schedule_id = res_data["schedules"][0]["scheduleId"]
-            return schedule_id
+    request_info = schedule_collection[1]["request"]
+    cookie = get_login_cookie()
+    res = get_response(request_info, cookie)
+    res_data = json.loads(res.text)
+    if res_data['schedules']:
+        return res_data['schedules'][0]['scheduleId']
     else:
         return None
 

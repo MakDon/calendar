@@ -28,7 +28,9 @@ class TestException(unittest.TestCase):
 
     def test02_static_not_found(self):
         request_info = copy.deepcopy(static_collection[1]["request"])
-        request_info['method'] = 'POST'
+        request_info['method'] = 'GET'
+        request_info['url']['raw'] ='127.0.0.1:8000/nothingnothingnothing.js'
+        request_info['url']['path'] = 'nothingnothingnothing.js'
         cookie = get_login_cookie()
         res = get_response(request_info, cookie)
         self.assertEqual(res.status_code, 404)

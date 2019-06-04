@@ -1,6 +1,7 @@
 import glossary from '../util/glossary';
 import config from '../config';
 import { remind } from '../adaptors/remind.adaptor';
+import { getSchedule } from '../util/util';
 
 const language = config.language;
 export function sendRemind(req, res) {
@@ -11,19 +12,22 @@ export function sendRemind(req, res) {
     });
     return;
   }
-  // TODO: 校验用户是否有对应日程的权限。
-  remind(req.body.target, req.body.scheduleId, req.session.userId, (err) => {
-    if (err) {
-      res.status(500).send({
-        status: 500,
-        msg: glossary.internalError[language],
-      });
-    } else {
-      res.json({
-        status: 200,
-        msg: glossary.success[language],
-      }).send();
-    }
+  getSchedule(req.body.scheduleId).then((sc) => {
+    const schedule = sc;
+    remind(req.body.target, schedule, req.session.userId, (err) => {
+      if (err) {
+        res.status(500).send({
+          status: 500,
+          msg: glossary.internalError[language],
+        });
+      } else {
+        res.json({
+          status: 200,
+          msg: glossary.success[language],
+        }).send();
+      }
+    });
   });
+  // TODO: 校验用户是否有对应日程的权限。
 }
 

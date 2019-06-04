@@ -1,4 +1,4 @@
-import Scheudle from '../models/schedule';
+import Schedule from '../models/schedule';
 import Comment from '../models/comment';
 
 export function deleteRelativeComment(scheduleId, _callback) {
@@ -7,15 +7,19 @@ export function deleteRelativeComment(scheduleId, _callback) {
 }
 
 export function delelteRelativeSchedule(calendarId, callback) {
-  Scheudle.find({ calendarId }).exec((err, schedules) => {
+  Schedule.find({ calendarId }).exec((err, schedules) => {
     if (!err) {
       schedules.forEach((schedule) => {
         const scheduleId = schedule.scheduleId;
         Comment.deleteMany({ scheduleId });
       });
-      Scheudle.deleteMany({ calendarId }).exec(callback);
+      Schedule.deleteMany({ calendarId }).exec(callback);
     } else {
       callback('Something Error');
     }
   });
+}
+
+export function getSchedule(scheduleId) {
+  return Schedule.findOne({ scheduleId }).exec();
 }
