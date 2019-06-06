@@ -12,7 +12,6 @@ import json
 from .util import get_status_code_by_request
 from .util import get_response
 from .util import get_login_cookie
-from .util import get_a_calendarId
 from .util import schedule_collection
 from .util import calendar_collection
 
@@ -55,7 +54,7 @@ class TestSchedule(unittest.TestCase):
 
 
     def test01_create_schedule(self):
-        calendar_id = get_a_calendarId()
+        calendar_id = calendar_id_to_delete
         if calendar_id:
             cookie = get_login_cookie()
             request_info = schedule_collection[0]["request"]
@@ -68,7 +67,7 @@ class TestSchedule(unittest.TestCase):
             raise FileNotFoundError("No calendar exists")
 
     def test02_create_schedule_400(self):
-        calendar_id = get_a_calendarId()
+        calendar_id = calendar_id_to_delete
         if calendar_id:
             cookie = get_login_cookie()
             request_info = schedule_collection[0]["request"]
@@ -92,7 +91,7 @@ class TestSchedule(unittest.TestCase):
         self.assertEqual(status_code, 200)
 
     def test05_edit_schedule(self):
-        calendar_id = get_a_calendarId()
+        calendar_id = calendar_id_to_delete
         if schedule_id_created and calendar_id:
             request_info = schedule_collection[2]["request"]
             cookie = get_login_cookie()
