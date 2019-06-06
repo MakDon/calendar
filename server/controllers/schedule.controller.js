@@ -62,9 +62,8 @@ export function getSchedule(req, res) {
     });
     return;
   }
-  Schedule.find()
-    .or([{ scheduleId: req.body.scheduleId, teamId: req.session.teamId },
-      { scheduleId: req.body.scheduleId, creatorId: req.session.userId }])
+
+  Schedule.find({ scheduleId: req.body.scheduleId })
     .exec((err, schedule) => {
       if (err) {
         res.status(500).send({
@@ -78,11 +77,20 @@ export function getSchedule(req, res) {
             msg: glossary.notFound[language],
           });
         } else {
-          res.json({
-            status: 200,
-            msg: glossary.success[language],
-            schedule,
-          }).send();
+          checkCalendarPermission(req.session.userId, req.session.teamId, schedule.calendarId, (permission) => {
+            if (permission || req.session.userId === schedule.creatorId) {
+              res.json({
+                status: 200,
+                msg: glossary.success[language],
+                schedule,
+              }).send();
+            } else {
+              res.status(404).send({
+                status: 404,
+                msg: glossary.notFound[language],
+              });
+            }
+          });
         }
       }
     });
