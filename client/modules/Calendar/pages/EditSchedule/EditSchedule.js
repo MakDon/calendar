@@ -63,7 +63,7 @@ export class EditSchedule extends Component {
 
   setScheduleInfo(result) {
     if (result.status === 200) {
-      const schedule = result.schedule[0];
+      const schedule = result.schedule;
       const scheduleInfo = {
         scheduleName: schedule.scheduleName,
         startTime: schedule.startTime,

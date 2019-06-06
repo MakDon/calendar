@@ -91,7 +91,7 @@ export class DetailSchedule extends Component {
 
   setScheduleInfo(result) {
     if (result.status === 200) {
-      const schedule = result.schedule[0];
+      const schedule = result.schedule;
       const startTime = new Date(schedule.startTime);
       const endTime = new Date(schedule.endTime);
       const scheduleInfo = {
