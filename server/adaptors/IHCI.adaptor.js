@@ -38,15 +38,19 @@ export function remindIHCI(target, schedule, source, callback) {
     source,
     schedule,
   };
-  request.post({ url, multipart: [{ body: JSON.stringify(data) }] }, () => {
+  const headers = { 'Content-type': 'application/json' };
+  request.post({ url, headers, body: JSON.stringify(data)  }, () => {
     callback();
   });
 }
 
 export function getTeammateIdsIHCI(teamId, callback) {
-  const authCode = generateCode('calendar', Date.now());
+  const authCode = generateCode('calendar', Date.now() - Date.now() % 60000);
   const url = `${hostname}/api/member`;
-  request.post({ url, multipart: [{ body: JSON.stringify({ teamId, authCode }) }] }, (error, rsp, body) => {
+  const headers = { 'Content-type': 'application/json' };
+  request.post({ url, headers, body: JSON.stringify({ teamId, authCode }) }, (error, rsp, body) => {
+    console.log(body);
+    // TODO: wrong list
     try {
       const members = [];
       const memberList = JSON.parse(body).data;
