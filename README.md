@@ -50,6 +50,6 @@ Do not use in business to avoid legal consequences
 
 [travis-badge]:    https://travis-ci.com/MakDon/calendar.svg?branch=master
 [travis-link]:     https://travis-ci.com/MakDon/calendar
-[version-badge]:   https://img.shields.io/badge/version-0.1.2-blue.svg
+[version-badge]:   https://img.shields.io/github/package-json/v/makdon/calendar.svg
 [coverage-badge]:  https://coveralls.io/repos/github/MakDon/calendar/badge.svg?branch=master
 [coverage-link]:   https://coveralls.io/github/MakDon/calendar?branch=master

@@ -47,6 +47,7 @@ export class EditSchedule extends Component {
     this.changeSelectAllPeople = this.changeSelectAllPeople.bind(this);
     this.selectAllPeople = this.selectAllPeople.bind(this);
     this.findSelectName = this.findSelectName.bind(this);
+    this.requestRemindMember = this.requestRemindMember.bind(this);
   }
 
   componentDidMount() {
@@ -62,7 +63,7 @@ export class EditSchedule extends Component {
 
   setScheduleInfo(result) {
     if (result.status === 200) {
-      const schedule = result.schedule[0];
+      const schedule = result.schedule;
       const scheduleInfo = {
         scheduleName: schedule.scheduleName,
         startTime: schedule.startTime,
@@ -232,13 +233,41 @@ export class EditSchedule extends Component {
     requestApi(requestUrl, data, this.ScheduleEditSave);
   }
 
+  requestRemindMember(target, scheduleId){
+    const requestUrl = configUrl.remind;
+    const data = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        target,
+        scheduleId,
+      }),
+    };
+    requestApi(requestUrl, data, this.afterRemindMember);
+  }
+
+  afterRemindMember(){
+    // TODO: 通知成功返回事件
+  }
+
   printResult() {
     // console.log(result);
   }
 
   ScheduleEditSave(result) {
     if (result.status === 200) {
-      this.ScheduleEditQuit();
+      const memberLength = this.state.teamMember.length;
+      for (let i = 0; i < memberLength; i++) {
+        if (document.getElementsByClassName('memberCheckbox')[i].checked) {
+          this.requestRemindMember(this.state.teamMember[i].id, this.state.scheduleId);
+        }
+        if (i === memberLength - 1) {
+          this.ScheduleEditQuit();
+        }
+      }
+
     } else {
       // eslint-disable-next-line no-alert
       alert(messages.ScheduleEditFailed);

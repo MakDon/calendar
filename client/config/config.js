@@ -18,5 +18,6 @@ const configUrl = {
   commentsDelete: `${url}/api/calendar/schedule/comment/delete`,
   commentsReply: `${url}/api/calendar/schedule/comment/reply`,
   teammates: `${url}/api/team/teammates`,
+  remind: `${url}/api/team/remind`,
 };
 export default configUrl;

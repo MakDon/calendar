@@ -28,25 +28,24 @@ export class Calendar extends Component {
       }
       this.requestLoginCalendar(ticket, teamId);
     } else {
-        window.addEventListener('message', (e) => {
-            const height = document.body.scrollHeight;
-            top.postMessage(height, e.origin);
+      window.addEventListener('message', (e) => {
+        const height = document.body.scrollHeight;
+        top.postMessage(height, e.origin);
             // if (!e.data) {
             // TODO: 修改alert为弹出框
             // alert(messages.loginFailed);
             // }
-            ticket = e.data.userId;
-            teamId = e.data.teamId;
-            if (ticket && teamId) {
-              sessionStorage.setItem('calendarTeamId', teamId);
-              sessionStorage.setItem('calendarTicket', ticket);
-              sessionStorage.setItem('calendarNewLogin', 'true');
-              this.requestLoginCalendar(ticket, teamId);
-            }
-
-        }, false);
+        ticket = e.data.userId;
+        teamId = e.data.teamId;
+        if (ticket && teamId) {
+          sessionStorage.setItem('calendarTeamId', teamId);
+          sessionStorage.setItem('calendarTicket', ticket);
+          sessionStorage.setItem('calendarNewLogin', 'true');
+          this.requestLoginCalendar(ticket, teamId);
+        }
+      }, false);
       const calendarNewLogin = sessionStorage.getItem('calendarNewLogin');
-      if(calendarNewLogin !== null && calendarNewLogin === 'false'){
+      if (calendarNewLogin !== null && calendarNewLogin === 'false') {
         teamId = sessionStorage.getItem('calendarTeamId');
         ticket = sessionStorage.getItem('calendarTicket');
         sessionStorage.setItem('calendarNewLogin', 'true');

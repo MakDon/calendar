@@ -60,6 +60,7 @@ export class DetailSchedule extends Component {
     this.findSelectName = this.findSelectName.bind(this);
     this.afterEditSchedule = this.afterEditSchedule.bind(this);
     this.afterScheduleDelete = this.afterScheduleDelete.bind(this);
+    this.requestRemindMember = this.requestRemindMember.bind(this);
   }
 
   // TODO： 发表评论时清除之前的草稿
@@ -90,7 +91,7 @@ export class DetailSchedule extends Component {
 
   setScheduleInfo(result) {
     if (result.status === 200) {
-      const schedule = result.schedule[0];
+      const schedule = result.schedule;
       const startTime = new Date(schedule.startTime);
       const endTime = new Date(schedule.endTime);
       const scheduleInfo = {
@@ -291,6 +292,25 @@ export class DetailSchedule extends Component {
     document.getElementById('deleteScheduleRemind').style.display = 'block';
   }
 
+  requestRemindMember(target, scheduleId){
+    const requestUrl = configUrl.remind;
+    const data = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        target,
+        scheduleId,
+      }),
+    };
+    requestApi(requestUrl, data, this.afterRemindMember);
+  }
+
+  afterRemindMember(){
+    // TODO: 通知成功返回事件
+  }
+
   afterScheduleDelete(result) {
     if (result.status === 200) {
       this.skipToIndex();
@@ -484,8 +504,16 @@ export class DetailSchedule extends Component {
 
   afterEditSchedule(result) {
     if (result.status === 200) {
-      this.requestScheduleInfo();
-      document.getElementById('editInformMember').style.display = 'none';
+      const memberLength = this.state.teamMember.length;
+      for (let i = 0; i < memberLength; i++) {
+        if (document.getElementsByClassName('memberCheckbox')[i].checked) {
+          this.requestRemindMember(this.state.teamMember[i].id, this.state.scheduleId);
+        }
+        if (i === memberLength - 1) {
+          this.requestScheduleInfo();
+          document.getElementById('editInformMember').style.display = 'none';
+        }
+      }
     } else {
       // eslint-disable-next-line no-alert
       alert(messages.InformMemberEditFailed);
@@ -589,7 +617,7 @@ export class DetailSchedule extends Component {
         );
       }
     }
-    console.log(this.state.setScheduleInfo.location)
+
     if (this.state.setScheduleInfo.location !== ''){
       scheduleLocation.push(
         <div className={styles.scheduleLocation} key='locationKey'>

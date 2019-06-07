@@ -62,9 +62,8 @@ export function getSchedule(req, res) {
     });
     return;
   }
-  Schedule.find()
-    .or([{ scheduleId: req.body.scheduleId, teamId: req.session.teamId },
-      { scheduleId: req.body.scheduleId, creatorId: req.session.userId }])
+
+  Schedule.findOne({ scheduleId: req.body.scheduleId })
     .exec((err, schedule) => {
       if (err) {
         res.status(500).send({
@@ -72,17 +71,26 @@ export function getSchedule(req, res) {
           msg: glossary.internalError[language],
         });
       } else {
-        if (Array.isArray(schedule) && schedule.length === 0 || !schedule) {
+        if (!schedule) {
           res.status(404).send({
             status: 404,
             msg: glossary.notFound[language],
           });
         } else {
-          res.json({
-            status: 200,
-            msg: glossary.success[language],
-            schedule,
-          }).send();
+          checkCalendarPermission(req.session.userId, req.session.teamId, schedule.calendarId, (permission) => {
+            if (permission || req.session.userId === schedule.creatorId) {
+              res.json({
+                status: 200,
+                msg: glossary.success[language],
+                schedule,
+              }).send();
+            } else {
+              res.status(404).send({
+                status: 404,
+                msg: glossary.notFound[language],
+              });
+            }
+          });
         }
       }
     });
@@ -155,9 +163,12 @@ export function editSchedule(req, res) {
     return;
   }
   const newSchedule = {};
-  newSchedule.calendarId = sanitizeHtml(req.body.calendarId || '');
-  checkCalendarPermission(req.session.userId, req.session.teamId, newSchedule.calendarId, (permission) => {
-    if (permission || !newSchedule.calendarId) {
+  const calendarId = req.body.calendarId ? sanitizeHtml(req.body.calendarId): undefined;
+  checkCalendarPermission(req.session.userId, req.session.teamId, calendarId, (permission) => {
+    if (permission || !calendarId) {
+      if (calendarId) {
+        newSchedule.calendarId = calendarId;
+      }
       if (req.body.scheduleName) {
         newSchedule.scheduleName = req.body.scheduleName;
       }
