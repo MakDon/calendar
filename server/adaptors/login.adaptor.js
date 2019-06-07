@@ -1,4 +1,3 @@
-import { getUserIdIHCI } from './IHCI.adaptor';
 /**
  * fetch the userId from platform server.
  * different implement according the login server;
@@ -11,6 +10,10 @@ export function getUserId(ticket, callback) {
     const userId = 'ThisIsATestingUserId';
     callback(error, userId);
   } else {
-    getUserIdIHCI(ticket, callback);
+    // implement your own adaptor here
+    const error = '';
+    const userId = 'ThisIsATestingUserId';
+    callback(error, userId);
+    console.log('WARNING: login adaptor is not implement yet'); // eslint-disable-line no-console
   }
 }
