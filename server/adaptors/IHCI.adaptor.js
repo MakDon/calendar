@@ -30,7 +30,7 @@ export function getUserIdIHCI(ticket, callback) {
 
 export function remindIHCI(target, schedule, source, callback) {
 // TODO:finish it
-  const authCode = generateCode('calendar', Date.now());
+  const authCode = generateCode('calendar', Date.now() - Date.now() % 60000);
   const url = `${hostname}/api/calendar/remind`;
   const data = {
     authCode,
@@ -39,7 +39,7 @@ export function remindIHCI(target, schedule, source, callback) {
     schedule,
   };
   const headers = { 'Content-type': 'application/json' };
-  request.post({ url, headers, body: JSON.stringify(data)  }, () => {
+  request.post({ url, headers, body: JSON.stringify(data) }, () => {
     callback();
   });
 }
@@ -49,15 +49,13 @@ export function getTeammateIdsIHCI(teamId, callback) {
   const url = `${hostname}/api/member`;
   const headers = { 'Content-type': 'application/json' };
   request.post({ url, headers, body: JSON.stringify({ teamId, authCode }) }, (error, rsp, body) => {
-    console.log(body);
-    // TODO: wrong list
     try {
       const members = [];
       const memberList = JSON.parse(body).data;
       for (let i = 0; i < memberList.length; i++) {
         const member = memberList[i];
-        const name = member.personInfo;
-        const id = member.unionid;
+        const name = member.personInfo.name;
+        const id = member._id;
         members.push({ id, name });
       }
       callback(error, members);

@@ -163,7 +163,7 @@ export function editSchedule(req, res) {
     return;
   }
   const newSchedule = {};
-  const calendarId = req.body.calendarId ? sanitizeHtml(req.body.calendarId): undefined;
+  const calendarId = req.body.calendarId ? sanitizeHtml(req.body.calendarId) : undefined;
   checkCalendarPermission(req.session.userId, req.session.teamId, calendarId, (permission) => {
     if (permission || !calendarId) {
       if (calendarId) {
@@ -211,7 +211,7 @@ export function editSchedule(req, res) {
         }
       });
     } else {
-      res.status(403).send({ status: 403, msg: glossary.notLoginMSG[language] });
+      res.status(404).send({ status: 404, msg: glossary.notFound[language] });
     }
   });
 }
